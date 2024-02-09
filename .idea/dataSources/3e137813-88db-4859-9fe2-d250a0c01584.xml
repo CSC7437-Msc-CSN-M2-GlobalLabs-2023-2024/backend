@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="mydatabase@localhost">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.51">
-    <root id="1">
-      <DefaultCasing>exact</DefaultCasing>
-      <DefaultEngine>InnoDB</DefaultEngine>
-      <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
-      <Grants>mydatabase|schema||myuser||ALTER|G
-mydatabase|schema||myuser||ALTER ROUTINE|G
-mydatabase|schema||myuser||CREATE|G
-mydatabase|schema||myuser||CREATE ROUTINE|G
-mydatabase|schema||myuser||CREATE TEMPORARY TABLES|G
-mydatabase|schema||myuser||CREATE VIEW|G
-mydatabase|schema||myuser||DELETE|G
-mydatabase|schema||myuser||DROP|G
-mydatabase|schema||myuser||EVENT|G
-mydatabase|schema||myuser||EXECUTE|G
-mydatabase|schema||myuser||INDEX|G
-mydatabase|schema||myuser||INSERT|G
-mydatabase|schema||myuser||LOCK TABLES|G
-mydatabase|schema||myuser||REFERENCES|G
-mydatabase|schema||myuser||SELECT|G
-mydatabase|schema||myuser||SHOW VIEW|G
-mydatabase|schema||myuser||TRIGGER|G
-mydatabase|schema||myuser||UPDATE|G</Grants>
-      <ServerVersion>8.3.0</ServerVersion>
-    </root>
+    <root id="1"/>
     <collation id="2" parent="1" name="armscii8_bin">
       <Charset>armscii8</Charset>
     </collation>

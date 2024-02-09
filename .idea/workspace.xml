@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82b14de1-fa21-418d-8e83-b8b80bf5b6d3" name="Changes" comment="" />
+    <list default="true" id="82b14de1-fa21-418d-8e83-b8b80bf5b6d3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/security/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3e137813-88db-4859-9fe2-d250a0c01584.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3e137813-88db-4859-9fe2-d250a0c01584.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commands.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/SpringbootApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/SpringbootApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StaffController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StaffController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/webSecurity/RestServiceCorsApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/SpringbootApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/SpringbootApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/controller/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/controller/StaffController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/controller/StaffController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/webSecurity/RestServiceCorsApplication$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/webSecurity/RestServiceCorsApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spring.springbootapp.DemoApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.spring.springbootapp.DemoApplicationTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.spring.springbootapp.DemoApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.spring.springbootapp.DemoApplicationTests.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +38,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -47,10 +72,13 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DemoApplication.executor": "Run",
+    "Spring Boot.SpringbootApp (1).executor": "Run",
     "Spring Boot.SpringbootApp.executor": "Run",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/run/media/col/Data/DATA/TSP/CSN/globalLab/demo",
+    "last_opened_file_path": "/run/media/col/Data/DATA/TSP/CSN/globalLab/test3/demo",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -74,7 +102,8 @@
   </component>
   <component name="RunManager">
     <configuration name="SpringbootApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="demo" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="backend" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.spring.springbootapp.SpringbootApp" />
       <extension name="coverage">
         <pattern>
@@ -110,6 +139,8 @@
       <workItem from="1707406860246" duration="29560000" />
       <workItem from="1707464795722" duration="380000" />
       <workItem from="1707465243212" duration="202000" />
+      <workItem from="1707466466534" duration="300000" />
+      <workItem from="1707466912027" duration="8375000" />
     </task>
     <servers />
   </component>

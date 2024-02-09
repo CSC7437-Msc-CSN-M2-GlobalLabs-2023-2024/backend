@@ -5,13 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/")
+@CrossOrigin
 public class HomeController {
-
-    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping
+    @CrossOrigin(origins = "*")
     public String welcomeMessage() {
         return "Hello welcome to Spring Boot Application.";
     }

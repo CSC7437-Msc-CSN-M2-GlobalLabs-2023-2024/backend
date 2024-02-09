@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:5173/")
 @RestController
 @RequestMapping("/")
 @Controller
@@ -19,26 +18,26 @@ public class StaffController {
     //@Autowired
     //StaffService staffService;
 
-    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/staff/getAll")
+    @CrossOrigin(origins = "*")
     public List<Staff> getAllStaff() {
         return staffRepo.findAll();
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/staff/get/{email}")
+    @CrossOrigin(origins = "*")
     public Staff getStaff(@PathVariable String email) {
         return staffRepo.findByEmail(email);
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/staff/delete/{email}")
+    @CrossOrigin(origins = "*")
     public void deleteStaff(@PathVariable String email) {
         staffRepo.delete(staffRepo.findByEmail(email));
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping("/staff/createOrUpdate")
+    @CrossOrigin(origins = "*")
     public Staff createMember(@RequestBody Staff staff) {
         return staffRepo.save(staff);
     }
