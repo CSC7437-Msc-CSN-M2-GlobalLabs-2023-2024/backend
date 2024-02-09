@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "stage")
-public class Stage {
+public class StageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,11 +16,11 @@ public class Stage {
     @NotBlank
     private Long staffEmail;
 
-    public Long getStageID() {
+    public Long getId() {
         return id;
     }
 
-    public void setStageID(Long stageID) {
+    public void setId(Long stageID) {
         this.id = stageID;
     }
 
@@ -40,11 +40,11 @@ public class Stage {
         this.completed = completed;
     }
 
-    public Long getStaffID() {
+    public Long getStaffEmail() {
         return staffEmail;
     }
 
-    public void setStaffID(Long staffEmail) {
+    public void setStaffEmail(Long staffEmail) {
         this.staffEmail = staffEmail;
     }
 

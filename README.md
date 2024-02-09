@@ -15,7 +15,9 @@
 docker run --name mydatabase -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_USER=myuser -e MYSQL_PASSWORD=secret -e MYSQL_DATABASE=mydatabase -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -d -p 3306:3306 mysql:latest
 ```
 
-### Launch the application
+Ensure the user, password and database name are the same as the ones in the application.properties file.
+
+### Launch the application with maven
 
 ```bash
 mvn clean install

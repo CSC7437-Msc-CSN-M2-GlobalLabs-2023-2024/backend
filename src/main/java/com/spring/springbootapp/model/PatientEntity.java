@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "patient")
-public class Patient {
+public class PatientEntity {
     @Id
     @NotBlank
     private String email;

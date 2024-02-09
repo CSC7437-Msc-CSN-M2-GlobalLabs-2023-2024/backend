@@ -1,14 +1,14 @@
 package com.spring.springbootapp.Service;
 
 
-import com.spring.springbootapp.model.Staff;
+import com.spring.springbootapp.model.StaffEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service()
 public interface StaffService {
-    Staff create(Staff staff);
-    List<Staff> findAll();
-    Staff findByEmail(String email);
+    StaffEntity create(StaffEntity staff);
+    List<StaffEntity> findAll();
+    StaffEntity findByEmail(String email);
 }

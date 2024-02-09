@@ -1,7 +1,7 @@
 package com.spring.springbootapp.controller;
 
 //import com.spring.springbootapp.Service.StaffService;
-import com.spring.springbootapp.model.Staff;
+import com.spring.springbootapp.model.StaffEntity;
 import com.spring.springbootapp.repository.StaffRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,17 +20,17 @@ public class StaffController {
 
     @GetMapping("/staff/getAll")
     @CrossOrigin(origins = "*")
-    public List<Staff> getAllStaff() {
+    public List<StaffEntity> getAllStaff() {
         return staffRepo.findAll();
     }
 
     @GetMapping("/staff/get/{email}")
     @CrossOrigin(origins = "*")
-    public Staff getStaff(@PathVariable String email) {
+    public StaffEntity getStaff(@PathVariable String email) {
         return staffRepo.findByEmail(email);
     }
 
-    @GetMapping("/staff/delete/{email}")
+    @DeleteMapping("/staff/delete/{email}")
     @CrossOrigin(origins = "*")
     public void deleteStaff(@PathVariable String email) {
         staffRepo.delete(staffRepo.findByEmail(email));
@@ -38,7 +38,7 @@ public class StaffController {
 
     @PostMapping("/staff/createOrUpdate")
     @CrossOrigin(origins = "*")
-    public Staff createMember(@RequestBody Staff staff) {
+    public StaffEntity createMember(@RequestBody StaffEntity staff) {
         return staffRepo.save(staff);
     }
 }

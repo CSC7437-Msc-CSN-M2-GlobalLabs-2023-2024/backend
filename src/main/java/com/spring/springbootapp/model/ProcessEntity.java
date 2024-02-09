@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "process")
-public class Process {
+public class ProcessEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,11 +18,11 @@ public class Process {
 
     private String stagesList;
 
-    public Long getProcessID() {
+    public Long getId() {
         return id;
     }
 
-    public void setProcessID(Long processID) {
+    public void setId(Long processID) {
         this.id = processID;
     }
 
@@ -34,19 +34,19 @@ public class Process {
         this.name = name;
     }
 
-    public String getPatient() {
+    public String getPatientEmail() {
         return patientEmail;
     }
 
-    public void setPatient(String patientEmail) {
+    public void setPatientEmail(String patientEmail) {
         this.patientEmail = patientEmail;
     }
 
-    public String getStaffList() {
+    public String getStaffEmailsList() {
         return staffEmailsList;
     }
 
-    public void setStaffList(String staffEmailsList) {
+    public void setStaffEmailsList(String staffEmailsList) {
         this.staffEmailsList = staffEmailsList;
     }
 

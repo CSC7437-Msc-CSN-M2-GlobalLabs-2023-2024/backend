@@ -2,11 +2,10 @@ package com.spring.springbootapp.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
 
 @Entity
 @Table(name = "staff")
-public class Staff {
+public class StaffEntity {
     @NotBlank
     @Id
     private String email;
@@ -54,12 +53,12 @@ public class Staff {
         this.position = position;
     }
 
-    public String getProcesses() {
+    public String getProcessesList() {
         return processesList;
     }
 
-    public void setProcesses(String processes) {
-        this.processesList = processes;
+    public void setProcessesList(String processesList) {
+        this.processesList = processesList;
     }
 
     public String getPasswordHash() {
