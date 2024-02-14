@@ -1,7 +1,11 @@
 package com.spring.springbootapp.model;
 
+import com.spring.springbootapp.model.primaryKey.PatientId;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @Table(name = "process")
@@ -12,11 +16,17 @@ public class ProcessEntity {
     @NotBlank
     private String name;
     @NotBlank
-    private String patientEmail;
+    private PatientId patientId;
 
-    private String staffEmailsList;
+    @ElementCollection
+    @CollectionTable(name = "process_staff_emails", joinColumns = @JoinColumn(name = "process_id"))
+    @Column(name = "staff_email")
+    private List<String> staffEmails;
 
-    private String stagesList;
+    @ElementCollection
+    @CollectionTable(name = "process_stage_ids", joinColumns = @JoinColumn(name = "process_id"))
+    @Column(name = "stage_id")
+    private List<Long> stageIds;
 
     public Long getId() {
         return id;
@@ -34,28 +44,44 @@ public class ProcessEntity {
         this.name = name;
     }
 
-    public String getPatientEmail() {
-        return patientEmail;
+    public PatientId getPatientId() {
+        return patientId;
     }
 
-    public void setPatientEmail(String patientEmail) {
-        this.patientEmail = patientEmail;
+    public void setPatientId(PatientId patientId) {
+        this.patientId = patientId;
     }
 
-    public String getStaffEmailsList() {
-        return staffEmailsList;
+    public List<String> getStaffEmails() {
+        return staffEmails;
     }
 
-    public void setStaffEmailsList(String staffEmailsList) {
-        this.staffEmailsList = staffEmailsList;
+    public void setStaffEmails(List<String> staffEmails) {
+        this.staffEmails = staffEmails;
     }
 
-    public String getStagesList() {
-        return stagesList;
+    public List<Long> getStageIds() {
+        return stageIds;
     }
 
-    public void setStagesList(String stagesList) {
-        this.stagesList = stagesList;
+    public void setStageIds(List<Long> stageIds) {
+        this.stageIds = stageIds;
+    }
+
+    public void addStaffEmail(String staffEmail) {
+        staffEmails.add(staffEmail);
+    }
+
+    public void removeStaffEmail(String staffEmail) {
+        staffEmails.remove(staffEmail);
+    }
+
+    public void addStageId(Long stageId) {
+        stageIds.add(stageId);
+    }
+
+    public void removeStageId(Long stageId) {
+        stageIds.remove(stageId);
     }
 
 }

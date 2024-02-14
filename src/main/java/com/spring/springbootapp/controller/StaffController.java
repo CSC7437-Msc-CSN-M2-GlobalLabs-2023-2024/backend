@@ -1,44 +1,84 @@
 package com.spring.springbootapp.controller;
 
-//import com.spring.springbootapp.Service.StaffService;
 import com.spring.springbootapp.model.StaffEntity;
 import com.spring.springbootapp.repository.StaffRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/staff")
 @Controller
 public class StaffController {
     @Autowired
     StaffRepo staffRepo;
-    //@Autowired
-    //StaffService staffService;
 
-    @GetMapping("/staff/getAll")
+    /**
+     * Get all staff
+     */
+    @GetMapping("/getAll")
     @CrossOrigin(origins = "*")
     public List<StaffEntity> getAllStaff() {
         return staffRepo.findAll();
     }
 
-    @GetMapping("/staff/get/{email}")
+    /**
+     * Get staff by email
+     */
+    @GetMapping("/getByEmail/{email}")
     @CrossOrigin(origins = "*")
-    public StaffEntity getStaff(@PathVariable String email) {
-        return staffRepo.findByEmail(email);
+    public ResponseEntity<?> getStaffByEmail(@PathVariable String email) {
+        if (!staffRepo.existsById(email)) {
+            return new ResponseEntity<>("Staff not found", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(staffRepo.findById(email), HttpStatus.OK);
     }
 
-    @DeleteMapping("/staff/delete/{email}")
+    /**
+     * Delete staff by email
+     */
+    @DeleteMapping("/delete/{email}")
     @CrossOrigin(origins = "*")
-    public void deleteStaff(@PathVariable String email) {
-        staffRepo.delete(staffRepo.findByEmail(email));
+    public ResponseEntity<?> deleteStaff(@PathVariable String email) {
+        if (!staffRepo.existsById(email)) {
+            return new ResponseEntity<>("Staff not found", HttpStatus.NOT_FOUND);
+        }
+        staffRepo.deleteById(email);
+        return new ResponseEntity<>("Staff deleted successfully", HttpStatus.OK);
     }
 
-    @PostMapping("/staff/createOrUpdate")
+    /** Create a staff */
+    @PostMapping("/create")
     @CrossOrigin(origins = "*")
-    public StaffEntity createMember(@RequestBody StaffEntity staff) {
-        return staffRepo.save(staff);
+    public ResponseEntity<?> createStaff(@Valid @RequestBody StaffEntity staff, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+        }
+        // Additional validation logic if needed
+        StaffEntity savedStaff = staffRepo.save(staff);
+        return new ResponseEntity<>(savedStaff, HttpStatus.CREATED);
+    }
+
+    /**
+     * Update a staff
+     */
+    @PutMapping("/update")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<?> updateStaff(@Valid @RequestBody StaffEntity staff, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+        }
+        if (!staffRepo.existsById(staff.getEmail())) {
+            return new ResponseEntity<>("Staff not found", HttpStatus.NOT_FOUND);
+        }
+        // Additional validation logic if needed
+        StaffEntity savedStaff = staffRepo.save(staff);
+        return new ResponseEntity<>(savedStaff, HttpStatus.OK);
     }
 }

@@ -55,9 +55,12 @@ docker run --name myapp --network custom-network -p 8080:8080 myspringbootapp
 ```
 
 
-## database model
+## Database model
+
+Here is the database model for the application. Attributes in bold are primary keys.
+
 Staff = {
-	email:string,
+	**<span style="color:red">email</span>**:string,
 	passwordHash:string,
 	firstName:string,
 	lastName:string,
@@ -66,15 +69,15 @@ Staff = {
 }
 
 Patient = {
-	email:string
-	firstName:string,
-	lastName:string,
+	**<span style="color:red">email</span>**:string,
+	**<span style="color:red">firstName</span>**:string,
+	**<span style="color:red">lastName</span>**:string,
+	**<span style="color:red">age</span>**:string,
 	sex:boolean,
-    age:number,
 }
 
 Process = {
-	id:number,
+	**<span style="color:red">id</span>**:number,
 	name:string,
 	patientEmail:string,
 	staffEmails:string[],
@@ -82,9 +85,12 @@ Process = {
 }
 
 Stage = {
-	id:number,
+	**<span style="color:red">id</span>**:number,
 	name:string,
 	completed:boolean,
 	staffEmail:string
 }
 
+## Some remarks
+- In this model if, for example, a children is sick and the parents too, they can use the same email.
+- For the staff we consider the mail as the primary key, which is good because we consider that in a same hospital there can be two people with the same name but not with the same mail.

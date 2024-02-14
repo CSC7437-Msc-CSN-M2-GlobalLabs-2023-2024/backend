@@ -1,6 +1,7 @@
 package com.spring.springbootapp.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -14,6 +15,7 @@ public class StageEntity {
     @NotBlank
     private boolean completed;
     @NotBlank
+    @Email
     private Long staffEmail;
 
     public Long getId() {

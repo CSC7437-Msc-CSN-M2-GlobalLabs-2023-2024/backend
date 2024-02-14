@@ -1,12 +1,16 @@
 package com.spring.springbootapp.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "staff")
 public class StaffEntity {
     @NotBlank
+    @Email
     @Id
     private String email;
     @NotBlank
@@ -18,8 +22,22 @@ public class StaffEntity {
     @NotBlank
     private String position;
 
-    private String processesList;
+    @NotBlank
+    @NotNull
+    private boolean admin;
 
+    @ElementCollection
+    @CollectionTable(name = "staff_process_ids", joinColumns = @JoinColumn(name = "staff_email"))
+    @Column(name = "process_id")
+    private List<Long> processIds;
+
+    public List<Long> getProcessIds() {
+        return processIds;
+    }
+
+    public void setProcessIds(List<Long> processIds) {
+        this.processIds = processIds;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -53,19 +71,19 @@ public class StaffEntity {
         this.position = position;
     }
 
-    public String getProcessesList() {
-        return processesList;
-    }
-
-    public void setProcessesList(String processesList) {
-        this.processesList = processesList;
-    }
-
     public String getPasswordHash() {
         return passwordHash;
     }
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

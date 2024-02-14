@@ -1,42 +1,84 @@
 package com.spring.springbootapp.controller;
 
-
 import com.spring.springbootapp.model.StageEntity;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 import com.spring.springbootapp.repository.StageRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/stage")
 @Controller
 public class StageController {
     @Autowired
     StageRepo stageRepo;
 
-    @GetMapping("/stage/getAll")
+    /**
+     * Get all stages
+     */
+    @GetMapping("/getAll")
     @CrossOrigin(origins = "*")
-    public Iterable<StageEntity> getAllStage() {
+    public List<StageEntity> getAllStages() {
         return stageRepo.findAll();
     }
 
-    @GetMapping("/stage/get/{id}")
+    /**
+     * Get stage by ID
+     */
+    @GetMapping("/getById/{id}")
     @CrossOrigin(origins = "*")
-    public StageEntity getStage(@PathVariable String id) {
-        return stageRepo.findById(id);
+    public ResponseEntity<?> getStageById(@PathVariable Long id) {
+        if (!stageRepo.existsById(id)) {
+            return new ResponseEntity<>("Stage not found", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(stageRepo.findById(id), HttpStatus.OK);
     }
 
-    @DeleteMapping("/stage/delete/{id}")
+    /**
+     * Delete stage by ID
+     */
+    @DeleteMapping("/delete/{id}")
     @CrossOrigin(origins = "*")
-    public void deleteStage(@PathVariable String id) {
-        stageRepo.delete(stageRepo.findById(id));
+    public ResponseEntity<?> deleteStage(@PathVariable Long id) {
+        if (!stageRepo.existsById(id)) {
+            return new ResponseEntity<>("Stage not found", HttpStatus.NOT_FOUND);
+        }
+        stageRepo.deleteById(id);
+        return new ResponseEntity<>("Stage deleted successfully", HttpStatus.OK);
     }
 
-    @PostMapping("/stage/createOrUpdate")
+    /** Create a stage */
+    @PostMapping("/create")
     @CrossOrigin(origins = "*")
-    public StageEntity createMember(@RequestBody StageEntity stage) {
-        return stageRepo.save(stage);
+    public ResponseEntity<?> createStage(@Valid @RequestBody StageEntity stage, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+        }
+        // Additional validation logic if needed
+        StageEntity savedStage = stageRepo.save(stage);
+        return new ResponseEntity<>(savedStage, HttpStatus.CREATED);
     }
 
+    /**
+     * Update a stage
+     */
+    @PutMapping("/update")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<?> updateStage(@Valid @RequestBody StageEntity stage, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+        }
+        if (!stageRepo.existsById(stage.getId())) {
+            return new ResponseEntity<>("Stage not found", HttpStatus.NOT_FOUND);
+        }
+        // Additional validation logic if needed
+        StageEntity savedStage = stageRepo.save(stage);
+        return new ResponseEntity<>(savedStage, HttpStatus.OK);
+    }
 }

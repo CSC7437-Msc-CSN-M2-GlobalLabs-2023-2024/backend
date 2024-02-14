@@ -1,36 +1,34 @@
-package com.spring.springbootapp.model;
+package com.spring.springbootapp.model.primaryKey;
 
-import com.spring.springbootapp.model.primaryKey.PatientId;
-
-import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
-@Entity
-@Table(name = "patient")
-@IdClass(PatientId.class)
-public class PatientEntity {
-    @Id
+public class PatientId implements Serializable {
     @NotBlank
+    @NotNull
     @Email
     private String email;
-
-    @Id
     @NotBlank
+    @NotNull
     private String firstName;
-
-    @Id
     @NotBlank
+    @NotNull
     private String lastName;
-
-    @Id
     @NotBlank
+    @NotNull
     @Min(value = 0, message = "Age must be greater than or equal to 0")
     private int age;
 
-    @NotBlank
-    private boolean sex;
+    public PatientId(String email, String firstName, String lastName, int age) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
 
     public String getEmail() {
         return email;
@@ -56,14 +54,6 @@ public class PatientEntity {
         this.lastName = lastName;
     }
 
-    public boolean getSex() {
-        return sex;
-    }
-
-    public void setSex(boolean sex) {
-        this.sex = sex;
-    }
-
     public int getAge() {
         return age;
     }
@@ -71,5 +61,4 @@ public class PatientEntity {
     public void setAge(int age) {
         this.age = age;
     }
-
 }

@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="mydatabase@localhost">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.51">
-    <root id="1"/>
+    <root id="1">
+      <DefaultCasing>exact</DefaultCasing>
+      <DefaultEngine>InnoDB</DefaultEngine>
+      <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
+      <Grants>mydatabase|schema||myuser||ALTER|G
+mydatabase|schema||myuser||ALTER ROUTINE|G
+mydatabase|schema||myuser||CREATE|G
+mydatabase|schema||myuser||CREATE ROUTINE|G
+mydatabase|schema||myuser||CREATE TEMPORARY TABLES|G
+mydatabase|schema||myuser||CREATE VIEW|G
+mydatabase|schema||myuser||DELETE|G
+mydatabase|schema||myuser||DROP|G
+mydatabase|schema||myuser||EVENT|G
+mydatabase|schema||myuser||EXECUTE|G
+mydatabase|schema||myuser||INDEX|G
+mydatabase|schema||myuser||INSERT|G
+mydatabase|schema||myuser||LOCK TABLES|G
+mydatabase|schema||myuser||REFERENCES|G
+mydatabase|schema||myuser||SELECT|G
+mydatabase|schema||myuser||SHOW VIEW|G
+mydatabase|schema||myuser||TRIGGER|G
+mydatabase|schema||myuser||UPDATE|G</Grants>
+      <ServerVersion>8.3.0</ServerVersion>
+    </root>
     <collation id="2" parent="1" name="armscii8_bin">
       <Charset>armscii8</Charset>
     </collation>
@@ -906,12 +929,216 @@
     </schema>
     <schema id="289" parent="1" name="mydatabase">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-02-08.23:02:53</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-02-14.16:01:15</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="290" parent="1" name="performance_schema">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="291" parent="1" name="myuser"/>
+    <table id="292" parent="289" name="patient">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="293" parent="289" name="process">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="294" parent="289" name="process_staff_emails">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="295" parent="289" name="process_stage_ids">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="296" parent="289" name="staff">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="297" parent="289" name="staff_process_ids">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="298" parent="289" name="stage">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <column id="299" parent="292" name="age">
+      <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="300" parent="292" name="email">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="301" parent="292" name="first_name">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="302" parent="292" name="last_name">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="303" parent="292" name="sex">
+      <DasType>bit(1)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <index id="304" parent="292" name="PRIMARY">
+      <ColNames>age
+email
+first_name
+last_name</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="305" parent="292" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="306" parent="293" name="id">
+      <AutoIncrement>1</AutoIncrement>
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="307" parent="293" name="name">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="308" parent="293" name="patient_email">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <index id="309" parent="293" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="310" parent="293" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="311" parent="294" name="process_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="312" parent="294" name="staff_email">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="313" parent="294" name="FKtnfpb1b46vseyv4l4ta7fxx83">
+      <ColNames>process_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>process</RefTableName>
+    </foreign-key>
+    <index id="314" parent="294" name="FKtnfpb1b46vseyv4l4ta7fxx83">
+      <ColNames>process_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <column id="315" parent="295" name="process_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="316" parent="295" name="stage_id">
+      <DasType>bigint|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="317" parent="295" name="FKoe24s6bv8pmkwcqu56qh4idqg">
+      <ColNames>process_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>process</RefTableName>
+    </foreign-key>
+    <index id="318" parent="295" name="FKoe24s6bv8pmkwcqu56qh4idqg">
+      <ColNames>process_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <column id="319" parent="296" name="email">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="320" parent="296" name="first_name">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="321" parent="296" name="last_name">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="322" parent="296" name="password_hash">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="323" parent="296" name="position">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <index id="324" parent="296" name="PRIMARY">
+      <ColNames>email</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="325" parent="296" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="326" parent="297" name="staff_email">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="327" parent="297" name="process_id">
+      <DasType>bigint|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="328" parent="297" name="FKtoks35wnonvg0gvfbrdpj0gl6">
+      <ColNames>staff_email</ColNames>
+      <RefColNames>email</RefColNames>
+      <RefTableName>staff</RefTableName>
+    </foreign-key>
+    <index id="329" parent="297" name="FKtoks35wnonvg0gvfbrdpj0gl6">
+      <ColNames>staff_email</ColNames>
+      <Type>btree</Type>
+    </index>
+    <column id="330" parent="298" name="id">
+      <AutoIncrement>1</AutoIncrement>
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="331" parent="298" name="completed">
+      <DasType>bit(1)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="332" parent="298" name="name">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="333" parent="298" name="staff_email">
+      <DasType>bigint|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <index id="334" parent="298" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="335" parent="298" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
   </database-model>
 </dataSource>
