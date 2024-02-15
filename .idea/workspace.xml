@@ -5,24 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82b14de1-fa21-418d-8e83-b8b80bf5b6d3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/primaryKey/PatientId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/Sex.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3e137813-88db-4859-9fe2-d250a0c01584.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3e137813-88db-4859-9fe2-d250a0c01584.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/PatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/PatientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/ProcessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/ProcessController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StaffController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StaffController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/PatientEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/PatientEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/ProcessEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/ProcessEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/StaffEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/StaffEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/StageEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/StageEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/repository/PatientRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/repository/PatientRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/repository/ProcessRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/repository/ProcessRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/repository/StaffRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/repository/StaffRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/repository/StageRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/repository/StageRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/primaryKey/PatientId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/primaryKey/PatientId.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +22,7 @@
         <option value="Interface" />
         <option value="Dockerfile" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -148,6 +136,7 @@
       <workItem from="1707466912027" duration="21120000" />
       <workItem from="1707902974689" duration="149000" />
       <workItem from="1707903178126" duration="15671000" />
+      <workItem from="1707936876243" duration="7618000" />
     </task>
     <servers />
   </component>

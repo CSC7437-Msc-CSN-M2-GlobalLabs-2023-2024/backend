@@ -30,7 +30,8 @@ public class PatientEntity {
     private int age;
 
     @NotBlank
-    private boolean sex;
+    @Enumerated(EnumType.STRING)
+    private Sex sex;
 
     public String getEmail() {
         return email;
@@ -56,11 +57,11 @@ public class PatientEntity {
         this.lastName = lastName;
     }
 
-    public boolean getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(boolean sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 

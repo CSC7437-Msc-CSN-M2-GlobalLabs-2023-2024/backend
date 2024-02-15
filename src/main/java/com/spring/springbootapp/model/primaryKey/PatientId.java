@@ -3,24 +3,23 @@ package com.spring.springbootapp.model.primaryKey;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class PatientId implements Serializable {
     @NotBlank
-    @NotNull
     @Email
     private String email;
     @NotBlank
-    @NotNull
     private String firstName;
     @NotBlank
-    @NotNull
     private String lastName;
-    @NotBlank
-    @NotNull
     @Min(value = 0, message = "Age must be greater than or equal to 0")
     private int age;
+
+    // Default constructor
+    public PatientId() {
+        // Default constructor
+    }
 
     public PatientId(String email, String firstName, String lastName, int age) {
         this.email = email;
@@ -28,7 +27,6 @@ public class PatientId implements Serializable {
         this.lastName = lastName;
         this.age = age;
     }
-
 
     public String getEmail() {
         return email;
