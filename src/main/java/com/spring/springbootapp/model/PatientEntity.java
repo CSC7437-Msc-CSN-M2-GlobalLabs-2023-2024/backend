@@ -33,6 +33,17 @@ public class PatientEntity {
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
+    public PatientEntity(String email, String firstName, String lastName, int age, Sex sex) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.sex = sex;
+    }
+
+    public PatientEntity() {
+    }
+
     public String getEmail() {
         return email;
     }

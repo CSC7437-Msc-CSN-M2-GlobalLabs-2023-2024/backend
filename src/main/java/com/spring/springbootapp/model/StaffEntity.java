@@ -9,6 +9,20 @@ import java.util.List;
 @Entity
 @Table(name = "staff")
 public class StaffEntity {
+
+    public StaffEntity(String email, String passwordHash, String firstName, String lastName, String position, boolean admin, List<Long> processIds) {
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.position = position;
+        this.admin = admin;
+        this.processIds = processIds;
+    }
+
+    public StaffEntity() {
+    }
+
     @NotBlank
     @Email
     @Id
@@ -79,7 +93,7 @@ public class StaffEntity {
         this.passwordHash = passwordHash;
     }
 
-    public boolean getAdmin() {
+    public boolean isAdmin() {
         return admin;
     }
 

@@ -1,7 +1,12 @@
 package com.spring.springbootapp.controller;
 
+import com.spring.springbootapp.controller.payloads.process.PayloadProcessCreate;
+import com.spring.springbootapp.controller.payloads.process.PayloadProcessUpdate;
+import com.spring.springbootapp.controller.payloads.stage.PayloadStageUpdate;
+import com.spring.springbootapp.model.Credential;
 import com.spring.springbootapp.model.ProcessEntity;
 import com.spring.springbootapp.repository.ProcessRepo;
+import com.spring.springbootapp.repository.StaffRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,66 +24,158 @@ public class ProcessController {
     @Autowired
     ProcessRepo processRepo;
 
+    @Autowired
+    StaffRepo staffRepo;
+
     /**
      * Get all processes
+     * This api is available to all staff members
+     * @param credential The credentials of the staff member
+     *                   (email and passwordHash)
+     *                   to be used to authenticate
+     *                   the staff member
+     *                   (required)
+     * @return A list of all processes
+     *        if the credentials are valid
+     *        (HTTP 200 OK)
+     *        or an error message
+     *        if the credentials are invalid
+     *        (HTTP 401 UNAUTHORIZED)
+     *
      */
-    @GetMapping("/getAll")
+    @PostMapping("/getAll")
     @CrossOrigin(origins = "*")
-    public List<ProcessEntity> getAllProcesses() {
-        return processRepo.findAll();
+    public ResponseEntity<?> getAllProcesses(@Valid @RequestBody Credential credential,
+                                             BindingResult bindingResult) {
+        credential.setStaffRepo(staffRepo);
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+        }
+        if (credential.isValid()) { // Check if credential correspond to a staff member
+            List<ProcessEntity> processes = processRepo.findAll();
+            return new ResponseEntity<>(processes, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+        }
     }
 
     /**
      * Get a process by ID
+     * This api is available to all staff members
+     * @param credential The credentials of the staff member
+     *                   (email and passwordHash)
+     *                   to be used to authenticate
+     *                   the staff member
+     *                   (required)
+     * @param id The ID of the process to be retrieved
+     *           (required)
+     * @return The process with the specified ID
+     *        if the credentials are valid
+     *        and the process exists
+     *        (HTTP 200 OK)
+     *        or an error message
+     *        if the credentials are invalid
+     *        (HTTP 401 UNAUTHORIZED)
+     *        or an error message
+     *        if the process does not exist
+     *        (HTTP 404 NOT FOUND)
+     *
      */
-    @GetMapping("/getById/{id}")
+    @PostMapping("/getById/{id}")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<?> getProcessById(@PathVariable Long id) {
-        if (!processRepo.existsById(id)) {
-            return new ResponseEntity<>("Process not found", HttpStatus.NOT_FOUND);
+    public ResponseEntity<?> getProcessById(@Valid @RequestBody Credential credential,
+                                            @PathVariable Long id,
+                                            BindingResult bindingResult) {
+        credential.setStaffRepo(staffRepo);
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(processRepo.findById(id), HttpStatus.OK);
+        if (credential.isValid()) { // Check if credential correspond to a staff member
+            if (!processRepo.existsById(id)) {
+                return new ResponseEntity<>("Process not found", HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(processRepo.findById(id), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+        }
     }
 
     /**
      * Delete a process
+     * This api is available to all staff members
+     * @param credential The credentials of the staff member
+     *                   (email and passwordHash)
+     *                   to be used to authenticate
+     *                   the staff member
+     *                   (required)
+     * @param id The ID of the process to be deleted
+     *           (required)
+     * @return A message indicating that the process was deleted
+     *        if the credentials are valid
+     *        and the process exists
+     *        (HTTP 200 OK)
+     *        or an error message
+     *        if the credentials are invalid
+     *        (HTTP 401 UNAUTHORIZED)
+     *        or an error message
+     *        if the process does not exist
+     *        (HTTP 404 NOT FOUND)
+     *
      */
     @DeleteMapping("/delete/{id}")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<?> deleteProcess(@PathVariable Long id) {
-        if (!processRepo.existsById(id)) {
-            return new ResponseEntity<>("Process not found", HttpStatus.NOT_FOUND);
-        }
-        processRepo.deleteById(id);
-        return new ResponseEntity<>("Process deleted successfully", HttpStatus.OK);
-    }
-
-    /** Create a process */
-    @PostMapping("/create")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<?> createProcess(@Valid @RequestBody ProcessEntity process, BindingResult bindingResult) {
+    public ResponseEntity<?> deleteProcess(@Valid @RequestBody Credential credential,
+                                           @PathVariable Long id,
+                                           BindingResult bindingResult) {
+        credential.setStaffRepo(staffRepo);
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
-        // Additional validation logic if needed
+        if (credential.isValid()) { // Check if credential correspond to a staff member
+            if (!processRepo.existsById(id)) {
+                return new ResponseEntity<>("Process not found", HttpStatus.NOT_FOUND);
+            }
+            processRepo.deleteById(id);
+            return new ResponseEntity<>("Process deleted", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+        }
+    }
+
+    @PostMapping("/create")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<?> createProcess(@Valid @RequestBody PayloadProcessCreate payloadProcessCreate, BindingResult bindingResult) {
+        Credential credential = payloadProcessCreate.getCredential();
+        ProcessEntity process = payloadProcessCreate.getProcess();
+        credential.setStaffRepo(staffRepo);
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
+        }
+        if (!credential.isValid()) {
+            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+        }
         ProcessEntity savedProcess = processRepo.save(process);
         return new ResponseEntity<>(savedProcess, HttpStatus.CREATED);
     }
 
-    /**
-     * Update a process
-     */
     @PutMapping("/update")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<?> updateProcess(@Valid @RequestBody ProcessEntity process, BindingResult bindingResult) {
+    public ResponseEntity<?> updateProcess(@Valid @RequestBody PayloadProcessUpdate payloadProcessUpdate, BindingResult bindingResult) {
+        Credential credential = payloadProcessUpdate.getCredential();
+        ProcessEntity newProcess = payloadProcessUpdate.getProcess();
+        Long processId = payloadProcessUpdate.getProcessId();
+        credential.setStaffRepo(staffRepo);
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
-        if (!processRepo.existsById(process.getId())) {
+        if (!credential.isValid()) {
+            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+        }
+        if (!processRepo.existsById(processId)) {
             return new ResponseEntity<>("Process not found", HttpStatus.NOT_FOUND);
         }
-        // Additional validation logic if needed
-        ProcessEntity savedProcess = processRepo.save(process);
+        newProcess.setId(processId);
+        ProcessEntity savedProcess = processRepo.save(newProcess);
         return new ResponseEntity<>(savedProcess, HttpStatus.OK);
     }
 }

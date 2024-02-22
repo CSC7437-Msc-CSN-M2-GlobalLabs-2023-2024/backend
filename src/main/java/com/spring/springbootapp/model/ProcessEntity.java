@@ -10,6 +10,14 @@ import java.util.List;
 @Entity
 @Table(name = "process")
 public class ProcessEntity {
+
+    public ProcessEntity(String name, PatientId patientId, List<String> staffEmails, List<Long> stageIds) {
+        this.name = name;
+        this.patientId = patientId;
+        this.staffEmails = staffEmails;
+        this.stageIds = stageIds;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,6 +35,10 @@ public class ProcessEntity {
     @CollectionTable(name = "process_stage_ids", joinColumns = @JoinColumn(name = "process_id"))
     @Column(name = "stage_id")
     private List<Long> stageIds;
+
+    public ProcessEntity() {
+
+    }
 
     public Long getId() {
         return id;

@@ -8,6 +8,7 @@
 /run/media/col/Data/DATA/TSP/CSN/globalLab/backend/src/main/java/com/spring/springbootapp/controller/StageController.java
 /run/media/col/Data/DATA/TSP/CSN/globalLab/backend/src/main/java/com/spring/springbootapp/model/ProcessEntity.java
 /run/media/col/Data/DATA/TSP/CSN/globalLab/backend/src/main/java/com/spring/springbootapp/Service/StaffService.java
+/run/media/col/Data/DATA/TSP/CSN/globalLab/backend/src/main/java/com/spring/springbootapp/model/Sex.java
 /run/media/col/Data/DATA/TSP/CSN/globalLab/backend/src/main/java/com/spring/springbootapp/controller/StaffController.java
 /run/media/col/Data/DATA/TSP/CSN/globalLab/backend/src/main/java/com/spring/springbootapp/controller/HomeController.java
 /run/media/col/Data/DATA/TSP/CSN/globalLab/backend/src/main/java/com/spring/springbootapp/repository/ProcessRepo.java

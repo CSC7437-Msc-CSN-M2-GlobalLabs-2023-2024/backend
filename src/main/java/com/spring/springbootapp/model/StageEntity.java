@@ -16,7 +16,14 @@ public class StageEntity {
     private boolean completed;
     @NotBlank
     @Email
-    private Long staffEmail;
+    private String staffEmail;
+
+    public StageEntity(String name, boolean completed, String staffEmail) {
+    }
+
+    public StageEntity() {
+
+    }
 
     public Long getId() {
         return id;
@@ -42,11 +49,11 @@ public class StageEntity {
         this.completed = completed;
     }
 
-    public Long getStaffEmail() {
+    public String getStaffEmail() {
         return staffEmail;
     }
 
-    public void setStaffEmail(Long staffEmail) {
+    public void setStaffEmail(String staffEmail) {
         this.staffEmail = staffEmail;
     }
 
