@@ -8,6 +8,8 @@ RUN mvn dependency:go-offline
 
 COPY src ./src
 
+RUN cat /app/src/main/resources/static/appPropertiesContainer.txt > /app/src/main/resources/application.properties
+
 RUN mvn package -DskipTests
 
 FROM openjdk:17-jdk-alpine

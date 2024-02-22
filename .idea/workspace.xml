@@ -5,46 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82b14de1-fa21-418d-8e83-b8b80bf5b6d3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/patient/PayloadPatientCreate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/patient/PayloadPatientDelete.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/patient/PayloadPatientGetById.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/patient/PayloadPatientUpdate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/process/PayloadProcessCreate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/process/PayloadProcessUpdate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/staff/PayloadStaffCreate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/staff/PayloadStaffUpdate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/stage/PayloadStageCreate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/stage/PayloadStageUpdate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/Credential.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/spring/springbootapp/PatientControllerTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/spring/springbootapp/PatientIdMatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/spring/springbootapp/ProcessControllerTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/spring/springbootapp/StaffControllerTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/spring/springbootapp/StageControllerTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/appPropertiesContainer.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/Service/ServiceImpl/StaffServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/Service/StaffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/Service/StaffService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/SpringbootApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/SpringbootApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/PatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/PatientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/ProcessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/ProcessController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StaffController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StaffController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/PatientEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/PatientEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/ProcessEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/ProcessEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/StaffEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/StaffEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/StageEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/StageEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/repository/StaffRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/repository/StaffRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spring/springbootapp/DemoApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/Service/ServiceImpl/StaffServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/Service/StaffService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/Service/StaffService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/SpringbootApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/SpringbootApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/controller/StaffController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/controller/StaffController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/repository/StaffRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/repository/StaffRepo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/spring/springbootapp/DemoApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +202,7 @@
       <workItem from="1707903178126" duration="15671000" />
       <workItem from="1707936876243" duration="23910000" />
       <workItem from="1708514489368" duration="12314000" />
-      <workItem from="1708599706328" duration="34793000" />
+      <workItem from="1708599706328" duration="37312000" />
     </task>
     <servers />
   </component>
