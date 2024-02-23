@@ -6,6 +6,11 @@ import com.spring.springbootapp.model.StageEntity;
 import javax.validation.Valid;
 
 public class PayloadStageCreate {
+
+    public PayloadStageCreate(Credential credential, StageEntity stage) {
+        this.credential = credential;
+        this.stage = stage;
+    }
     @Valid
     public Credential credential;
     @Valid

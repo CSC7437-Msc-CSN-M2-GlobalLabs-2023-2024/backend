@@ -6,14 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="82b14de1-fa21-418d-8e83-b8b80bf5b6d3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/Service/StaffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/Service/InitService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/SpringbootApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/SpringbootApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/PatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/PatientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/ProcessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/ProcessController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StaffController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StaffController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/patient/PayloadPatientCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/patient/PayloadPatientCreate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/patient/PayloadPatientDelete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/patient/PayloadPatientDelete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/patient/PayloadPatientGetById.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/patient/PayloadPatientGetById.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/patient/PayloadPatientUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/patient/PayloadPatientUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/staff/PayloadStaffCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/staff/PayloadStaffCreate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/staff/PayloadStaffUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/staff/PayloadStaffUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/stage/PayloadStageCreate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/stage/PayloadStageCreate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/stage/PayloadStageUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/payloads/stage/PayloadStageUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/Credential.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/Credential.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/spring/springbootapp/PatientControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spring/springbootapp/PatientControllerTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/controller/StaffController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/controller/StaffController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spring/springbootapp/ProcessControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spring/springbootapp/ProcessControllerTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spring/springbootapp/StaffControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spring/springbootapp/StaffControllerTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spring/springbootapp/StageControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spring/springbootapp/StageControllerTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,11 +77,21 @@
     "JUnit.PatientControllerTests.testGetPatientById.executor": "Run",
     "JUnit.PatientControllerTests.testUpdatePatient.executor": "Run",
     "JUnit.ProcessControllerTests.executor": "Run",
+    "JUnit.ProcessControllerTests.testDeleteProcess.executor": "Run",
+    "JUnit.ProcessControllerTests.testGetAllProcesses.executor": "Run",
+    "JUnit.ProcessControllerTests.testGetProcessById.executor": "Run",
     "JUnit.ProcessControllerTests.testUpdateProcess.executor": "Run",
     "JUnit.StaffControllerTests.executor": "Run",
+    "JUnit.StaffControllerTests.testCreateStaff.executor": "Run",
+    "JUnit.StaffControllerTests.testDeleteStaff.executor": "Run",
+    "JUnit.StaffControllerTests.testGetAllStaff.executor": "Run",
+    "JUnit.StaffControllerTests.testGetStaffByEmail.executor": "Run",
     "JUnit.StaffControllerTests.testUpdateStaff.executor": "Run",
     "JUnit.StageControllerTests.executor": "Run",
-    "JUnit.StageControllerTests.testGetAllStages.executor": "Debug",
+    "JUnit.StageControllerTests.testCreateStage.executor": "Run",
+    "JUnit.StageControllerTests.testDeleteStage.executor": "Run",
+    "JUnit.StageControllerTests.testGetAllStages.executor": "Run",
+    "JUnit.StageControllerTests.testGetStageById.executor": "Run",
     "JUnit.StageControllerTests.testUpdateStage.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -111,14 +127,8 @@
       <recent name="com.spring.springbootapp.exception" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpringbootApp">
-    <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
-      <method v="2" />
-    </configuration>
-    <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="#1" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="PatientControllerTests.test1GetAllPatients" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ProcessControllerTests.testUpdateProcess">
+    <configuration name="ProcessControllerTests.testCreateProcess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
         <pattern>
@@ -127,14 +137,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.spring.springbootapp" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.springbootapp.PatientControllerTests" />
-      <option name="METHOD_NAME" value="test1GetAllPatients" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.springbootapp.ProcessControllerTests" />
+      <option name="METHOD_NAME" value="testCreateProcess" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PatientControllerTests.test2GetAllPatients" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProcessControllerTests.testDeleteProcess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
         <pattern>
@@ -143,23 +153,57 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.spring.springbootapp" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.springbootapp.PatientControllerTests" />
-      <option name="METHOD_NAME" value="test2GetAllPatients" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.springbootapp.ProcessControllerTests" />
+      <option name="METHOD_NAME" value="testDeleteProcess" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SpringbootApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    <configuration name="ProcessControllerTests.testGetAllProcesses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.spring.springbootapp.SpringbootApp" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.spring.springbootapp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.spring.springbootapp" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.springbootapp.ProcessControllerTests" />
+      <option name="METHOD_NAME" value="testGetAllProcesses" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProcessControllerTests.testGetProcessById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spring.springbootapp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spring.springbootapp" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.springbootapp.ProcessControllerTests" />
+      <option name="METHOD_NAME" value="testGetProcessById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProcessControllerTests.testUpdateProcess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spring.springbootapp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spring.springbootapp" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.springbootapp.ProcessControllerTests" />
+      <option name="METHOD_NAME" value="testUpdateProcess" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -172,11 +216,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.SpringbootApp" />
-        <item itemvalue="HTTP Request.generated-requests | #1" />
-        <item itemvalue="HTTP Request.All in generated-requests" />
-        <item itemvalue="JUnit.PatientControllerTests.test2GetAllPatients" />
-        <item itemvalue="JUnit.PatientControllerTests.test1GetAllPatients" />
+        <item itemvalue="JUnit.ProcessControllerTests.testUpdateProcess" />
+        <item itemvalue="JUnit.ProcessControllerTests.testCreateProcess" />
+        <item itemvalue="JUnit.ProcessControllerTests.testDeleteProcess" />
+        <item itemvalue="JUnit.ProcessControllerTests.testGetProcessById" />
+        <item itemvalue="JUnit.ProcessControllerTests.testGetAllProcesses" />
       </list>
     </recent_temporary>
   </component>
@@ -206,7 +250,7 @@
       <workItem from="1708514489368" duration="12314000" />
       <workItem from="1708599706328" duration="42539000" />
       <workItem from="1708678560194" duration="332000" />
-      <workItem from="1708678932589" duration="3010000" />
+      <workItem from="1708678932589" duration="9942000" />
     </task>
     <servers />
   </component>

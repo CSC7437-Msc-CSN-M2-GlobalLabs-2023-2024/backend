@@ -6,6 +6,11 @@ import com.spring.springbootapp.model.ProcessEntity;
 import javax.validation.Valid;
 
 public class PayloadProcessCreate {
+
+    public PayloadProcessCreate(Credential credential, ProcessEntity process) {
+        this.credential = credential;
+        this.process = process;
+    }
     @Valid
     private Credential credential;
     @Valid

@@ -6,6 +6,11 @@ import com.spring.springbootapp.model.primaryKey.PatientId;
 import javax.validation.Valid;
 
 public class PayloadPatientGetById {
+
+    public PayloadPatientGetById(Credential credential, PatientId patientId) {
+        this.credential = credential;
+        this.patientId = patientId;
+    }
     @Valid
     private Credential credential;
 

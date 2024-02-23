@@ -6,6 +6,12 @@ import com.spring.springbootapp.model.ProcessEntity;
 import javax.validation.Valid;
 
 public class PayloadProcessUpdate {
+
+    public PayloadProcessUpdate(ProcessEntity process, Credential credential, Long processId) {
+        this.process = process;
+        this.credential = credential;
+        this.processId = processId;
+    }
     @Valid
     public ProcessEntity process;
     @Valid

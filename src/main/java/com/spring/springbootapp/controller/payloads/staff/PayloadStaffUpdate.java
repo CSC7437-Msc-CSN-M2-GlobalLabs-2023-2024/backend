@@ -6,6 +6,12 @@ import com.spring.springbootapp.model.StaffEntity;
 import javax.validation.Valid;
 
 public class PayloadStaffUpdate {
+
+    public PayloadStaffUpdate(Credential credential, StaffEntity staff, String staffEmail) {
+        this.credential = credential;
+        this.staff = staff;
+        this.staffEmail = staffEmail;
+    }
     @Valid
     Credential credential;
     @Valid

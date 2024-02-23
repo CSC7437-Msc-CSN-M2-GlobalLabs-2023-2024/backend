@@ -51,7 +51,9 @@ public class Credential {
 
 public boolean isValid() {
         if(email != null && passwordHash != null && staffRepo.existsByEmail(email)) {
-            return staffRepo.findByEmail(email).isPresent() && staffRepo.findByEmail(email).get().getPasswordHash().equals(passwordHash);
+            if(staffRepo.findByEmail(email).isPresent()){
+                return staffRepo.findByEmail(email).get().getPasswordHash().equals(passwordHash);
+            }
         }
         return false;
     }

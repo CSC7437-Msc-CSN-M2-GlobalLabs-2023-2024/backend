@@ -57,7 +57,7 @@ docker run --name myapp --network custom-network -p 8080:8080 myspringbootapp
 
 ## Database model
 
-Here is the database model for the application. Attributes in bold are primary keys.
+Here is the database model for the application. Attributes in bold are **<span style="color:red">primary keys</span>**.
 
 Staff = {
 	**<span style="color:red">email</span>**:string,

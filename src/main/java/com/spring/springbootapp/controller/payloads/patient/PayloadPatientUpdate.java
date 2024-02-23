@@ -7,6 +7,11 @@ import com.spring.springbootapp.model.primaryKey.PatientId;
 import javax.validation.Valid;
 
 public class PayloadPatientUpdate {
+    public PayloadPatientUpdate(Credential credential, PatientEntity patient, PatientId patientId) {
+        this.credential = credential;
+        this.patient = patient;
+        this.patientId = patientId;
+    }
     @Valid
     private Credential credential;
     @Valid
