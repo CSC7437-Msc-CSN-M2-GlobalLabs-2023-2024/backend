@@ -169,6 +169,7 @@ public class ProcessController {
                 return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
             }
         }
+        ProcessEntity savedProcess = processRepo.save(process);
         for (String email : process.getStaffEmails()) { //add process to staff members
             if(staffRepo.findByEmail(email).isPresent()) {
                 StaffEntity newStaff = staffRepo.findByEmail(email).get();
@@ -176,7 +177,6 @@ public class ProcessController {
                 staffRepo.save(newStaff);
             }
         }
-        ProcessEntity savedProcess = processRepo.save(process);
         return new ResponseEntity<>(savedProcess, HttpStatus.CREATED);
     }
 
