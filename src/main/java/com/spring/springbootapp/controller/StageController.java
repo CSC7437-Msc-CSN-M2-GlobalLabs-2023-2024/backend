@@ -28,19 +28,12 @@ public class StageController {
 
     /**
      * Get all stages
-     * This api is available to all staff members
-     * @param credential The credentials of the staff member
-     *                   (email and passwordHash)
-     *                   to be used to authenticate
-     *                   the staff member
-     *                   (required)
-     * @return A list of all stages
-     *        if the credentials are valid
-     *        (HTTP 200 OK)
-     *        or an error message
-     *        if the credentials are invalid
-     *        (HTTP 401 UNAUTHORIZED)
-     *
+     * @param credential
+     *    The credential of the staff member
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * A list of all stages
      */
     @PostMapping("/getAll")
     @CrossOrigin(origins = "*")
@@ -59,26 +52,15 @@ public class StageController {
     }
 
     /**
-     * Get a stage by ID
-     * This api is available to all staff members
-     * @param credential The credentials of the staff member
-     *                   (email and passwordHash)
-     *                   to be used to authenticate
-     *                   the staff member
-     *                   (required)
-     * @param id The ID of the stage to be retrieved
-     *           (required)
-     * @return The stage with the given ID
-     *        if the credentials are valid
-     *        and the stage exists
-     *        (HTTP 200 OK)
-     *        or an error message
-     *        if the credentials are invalid
-     *        (HTTP 401 UNAUTHORIZED)
-     *        or an error message
-     *        if the stage does not exist
-     *        (HTTP 404 NOT FOUND)
-     *
+     * Get stage by id
+     * @param credential
+     *    The credential of the staff member
+     * @param id
+     *    The id of the stage
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * The stage with the given id
      */
     @PostMapping("/getById/{id}")
     @CrossOrigin(origins = "*")
@@ -100,26 +82,15 @@ public class StageController {
     }
 
     /**
-     * Delete a stage
-     * This api is available to all staff members
-     * @param credential The credentials of the staff member
-     *                   (email and passwordHash)
-     *                   to be used to authenticate
-     *                   the staff member
-     *                   (required)
-     * @param id The ID of the stage to be deleted
-     *           (required)
-     * @return A message indicating that the stage was deleted successfully
-     *        if the credentials are valid
-     *        and the stage exists
-     *        (HTTP 200 OK)
-     *        or an error message
-     *        if the credentials are invalid
-     *        (HTTP 401 UNAUTHORIZED)
-     *        or an error message
-     *        if the stage does not exist
-     *        (HTTP 404 NOT FOUND)
-     *
+     * Delete a stage by id
+     * @param credential
+     *    The credential of the staff member
+     * @param id
+     *    The id of the stage
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * A message indicating the result of the operation
      */
     @DeleteMapping("/delete/{id}")
     @CrossOrigin(origins = "*")
@@ -141,6 +112,15 @@ public class StageController {
         }
     }
 
+    /**
+     * Create a stage
+     * @param payloadStageCreate
+     *    The payload containing the credential and the stage to create
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * The stage created
+     */
     @PostMapping("/create")
     @CrossOrigin(origins = "*")
     public ResponseEntity<?> createStage(@Valid @RequestBody PayloadStageCreate payloadStageCreate, BindingResult bindingResult) {
@@ -157,7 +137,15 @@ public class StageController {
         return new ResponseEntity<>(savedStage, HttpStatus.CREATED);
     }
 
-
+    /**
+     * Update a stage
+     * @param payloadStageUpdate
+     *    The payload containing the credential and the stage to update
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * The updated stage
+     */
     @PutMapping("/update")
     @CrossOrigin(origins = "*")
     public ResponseEntity<?> updateStage(@Valid @RequestBody PayloadStageUpdate payloadStageUpdate, BindingResult bindingResult) {

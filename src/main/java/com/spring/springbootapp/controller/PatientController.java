@@ -34,21 +34,13 @@ public class PatientController {
     }
 
     /**
-     * Get all patients if the credentials are valid
-     * @param credential The credentials of the staff member
-     *                   (email and passwordHash)
-     *                   to be used to authenticate
-     *                   the staff member
-     *                   (required)
-     * @return A list of all patients
-     *       if the credentials are valid
-     *       (HTTP 200 OK)
-     *       or an error message
-     *       if the credentials are invalid
-     *       (HTTP 401 UNAUTHORIZED)
-     *       or an error message
-     *       if the credentials are invalid
-     *
+     * Get all patients
+     * @param credential
+     *    The credential of the staff member
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * A list of all patients
      */
     @PostMapping("/getAll")
     @CrossOrigin(origins = "*")
@@ -68,6 +60,15 @@ public class PatientController {
     }
 
 
+    /**
+     * Get a patient by its id
+     * @param payloadPatientGetById
+     *    The payload containing the credential and the patient id
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * The patient with the provided id
+     */
     @PostMapping("/getById")
     @CrossOrigin(origins = "*")
     public ResponseEntity<?> getPatientById(@Valid @RequestBody PayloadPatientGetById payloadPatientGetById, BindingResult bindingResult) {
@@ -87,6 +88,15 @@ public class PatientController {
     }
 
 
+    /**
+     * Delete a patient
+     * @param payloadPatientDelete
+     *    The payload containing the credential and the patient id
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * A message indicating the success of the operation
+     */
     @DeleteMapping("/delete")
     @CrossOrigin(origins = "*")
     public ResponseEntity<?> delete(@Valid @RequestBody PayloadPatientDelete payloadPatientDelete, BindingResult bindingResult) {
@@ -106,6 +116,15 @@ public class PatientController {
         return new ResponseEntity<>("Patient deleted successfully", HttpStatus.OK);
     }
 
+    /**
+     * Create a patient
+     * @param payloadPatientCreate
+     *    The payload containing the credential and the patient
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * The created patient
+     */
     @PostMapping("/create")
     @CrossOrigin(origins = "*")
     public ResponseEntity<?> create(@Valid @RequestBody PayloadPatientCreate payloadPatientCreate, BindingResult bindingResult) {
@@ -126,6 +145,15 @@ public class PatientController {
     }
 
 
+    /**
+     * Update a patient
+     * @param payloadPatientUpdate
+     *    The payload containing the credential, the new patient and the old patient id
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * The updated patient
+     */
     @PutMapping("/update")
     @CrossOrigin(origins = "*")
     public ResponseEntity<?> update(@Valid @RequestBody PayloadPatientUpdate payloadPatientUpdate,

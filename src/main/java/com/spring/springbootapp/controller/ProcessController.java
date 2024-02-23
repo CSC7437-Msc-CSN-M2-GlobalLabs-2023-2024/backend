@@ -30,19 +30,12 @@ public class ProcessController {
 
     /**
      * Get all processes
-     * This api is available to all staff members
-     * @param credential The credentials of the staff member
-     *                   (email and passwordHash)
-     *                   to be used to authenticate
-     *                   the staff member
-     *                   (required)
-     * @return A list of all processes
-     *        if the credentials are valid
-     *        (HTTP 200 OK)
-     *        or an error message
-     *        if the credentials are invalid
-     *        (HTTP 401 UNAUTHORIZED)
-     *
+     * @param credential
+     *    The credential of the staff member
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * A list of all processes
      */
     @PostMapping("/getAll")
     @CrossOrigin(origins = "*")
@@ -61,26 +54,15 @@ public class ProcessController {
     }
 
     /**
-     * Get a process by ID
-     * This api is available to all staff members
-     * @param credential The credentials of the staff member
-     *                   (email and passwordHash)
-     *                   to be used to authenticate
-     *                   the staff member
-     *                   (required)
-     * @param id The ID of the process to be retrieved
-     *           (required)
-     * @return The process with the specified ID
-     *        if the credentials are valid
-     *        and the process exists
-     *        (HTTP 200 OK)
-     *        or an error message
-     *        if the credentials are invalid
-     *        (HTTP 401 UNAUTHORIZED)
-     *        or an error message
-     *        if the process does not exist
-     *        (HTTP 404 NOT FOUND)
-     *
+     * Get process by id
+     * @param credential
+     *    The credential of the staff member
+     * @param id
+     *    The id of the process
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * The process with the given id
      */
     @PostMapping("/getById/{id}")
     @CrossOrigin(origins = "*")
@@ -102,26 +84,15 @@ public class ProcessController {
     }
 
     /**
-     * Delete a process
-     * This api is available to all staff members
-     * @param credential The credentials of the staff member
-     *                   (email and passwordHash)
-     *                   to be used to authenticate
-     *                   the staff member
-     *                   (required)
-     * @param id The ID of the process to be deleted
-     *           (required)
-     * @return A message indicating that the process was deleted
-     *        if the credentials are valid
-     *        and the process exists
-     *        (HTTP 200 OK)
-     *        or an error message
-     *        if the credentials are invalid
-     *        (HTTP 401 UNAUTHORIZED)
-     *        or an error message
-     *        if the process does not exist
-     *        (HTTP 404 NOT FOUND)
-     *
+     * Delete process by id
+     * @param credential
+     *    The credential of the staff member
+     * @param id
+     *    The id of the process
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * A message indicating the success of the operation
      */
     @DeleteMapping("/delete/{id}")
     @CrossOrigin(origins = "*")
@@ -154,6 +125,15 @@ public class ProcessController {
         }
     }
 
+    /**
+     * Create a process
+     * @param payloadProcessCreate
+     *    The payload containing the credential and the process
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * The created process
+     */
     @PostMapping("/create")
     @CrossOrigin(origins = "*")
     public ResponseEntity<?> createProcess(@Valid @RequestBody PayloadProcessCreate payloadProcessCreate, BindingResult bindingResult) {
@@ -187,6 +167,15 @@ public class ProcessController {
         return new ResponseEntity<>(savedProcess, HttpStatus.CREATED);
     }
 
+    /**
+     * Update a process
+     * @param payloadProcessUpdate
+     *    The payload containing the credential, the process and the process id
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * The updated process
+     */
     @PutMapping("/update")
     @CrossOrigin(origins = "*")
     public ResponseEntity<?> updateProcess(@Valid @RequestBody PayloadProcessUpdate payloadProcessUpdate, BindingResult bindingResult) {

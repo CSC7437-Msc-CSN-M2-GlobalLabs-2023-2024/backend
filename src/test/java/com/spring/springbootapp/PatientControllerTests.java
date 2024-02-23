@@ -7,7 +7,9 @@ import com.spring.springbootapp.model.Sex;
 import com.spring.springbootapp.model.StaffEntity;
 import com.spring.springbootapp.model.primaryKey.PatientId;
 import com.spring.springbootapp.repository.PatientRepo;
+import com.spring.springbootapp.repository.ProcessRepo;
 import com.spring.springbootapp.repository.StaffRepo;
+import com.spring.springbootapp.repository.StageRepo;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
@@ -29,24 +31,33 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PatientControllerTests {
-
     @Mock
     private PatientRepo patientRepo;
-
+    @Mock
+    private StaffRepo staffRepo;
+    @Mock
+    private ProcessRepo processRepo;
+    @Mock
+    StageRepo stagesRepo;
 
     @InjectMocks
     private PatientController patientController;
-
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         reset(patientRepo);
+        reset(staffRepo);
+        reset(processRepo);
+        reset(stagesRepo);
     }
 
     @AfterEach
     public void tearDown() {
         reset(patientRepo);
+        reset(staffRepo);
+        reset(processRepo);
+        reset(stagesRepo);
     }
 
 

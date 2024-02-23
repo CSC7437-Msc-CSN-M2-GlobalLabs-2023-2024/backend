@@ -35,19 +35,12 @@ public class StaffController {
 
     /**
      * Get all staff members
-     * This api is available to all staff members
-     * @param credential The credentials of the staff member
-     *                   (email and passwordHash)
-     *                   to be used to authenticate
-     *                   the staff member
-     *                   (required)
-     * @return A list of all staff members
-     *        if the credentials are valid
-     *        (HTTP 200 OK)
-     *        or an error message
-     *        if the credentials are invalid
-     *        (HTTP 401 UNAUTHORIZED)
-     *
+     * @param credential
+     *    The credential of the staff member
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * A list of all staff members
      */
     @PostMapping("/getAll")
     @CrossOrigin(origins = "*")
@@ -70,25 +63,14 @@ public class StaffController {
 
     /**
      * Get staff by email
-     * This api is available to all staff members
-     * @param email The email of the staff member
-     *              to be used to retrieve the staff member
-     *              (required)
-     *              (in path)
-     * @param credential The credentials of the staff member
-     *                   (email and passwordHash)
-     *                   to be used to authenticate
-     *                   the staff member
-     *                   (required)
-     * @return The staff member with the given email
-     *       if the credentials are valid
-     *       (HTTP 200 OK)
-     *       or an error message
-     *       if the credentials are invalid
-     *       (HTTP 401 UNAUTHORIZED)
-     *       or if the staff member is not found
-     *       (HTTP 404 NOT FOUND)
-     *       or an error message
+     * @param credential
+     *    The credential of the staff member
+     * @param email
+     *    The email of the staff member
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * The staff member with the given email
      */
     @PostMapping("/getByEmail/{email}")
     @CrossOrigin(origins = "*")
@@ -114,28 +96,14 @@ public class StaffController {
 
     /**
      * Delete staff by email
-     * This api is available to only the admin staff member
-     * @param email The email of the staff member
-     *              to be used to delete the staff member
-     *              (required)
-     *              (in path)
-     * @param credential The credentials of the staff member
-     *                   (email and passwordHash)
-     *                   to be used to authenticate
-     *                   the staff member
-     *                   (required)
-     * @return A success message
-     *      if the credentials are valid
-     *      and the staff member is deleted
-     *      (HTTP 200 OK)
-     *      or an error message
-     *      if the credentials are invalid
-     *      (HTTP 401 UNAUTHORIZED)
-     *      or if the staff member is not found
-     *      (HTTP 404 NOT FOUND)
-     *      or an error message
-     *      if the staff member is not an admin
-     *      (HTTP 401 UNAUTHORIZED)
+     * @param credential
+     *    The credential of the staff member
+     * @param email
+     *    The email of the staff member
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * The staff member with the given email
      */
     @DeleteMapping("/delete/{email}")
     @CrossOrigin(origins = "*")
@@ -172,7 +140,15 @@ public class StaffController {
         }
     }
 
-
+    /**
+     * Create a staff member
+     * @param payloadStaffCreate
+     *    The payload containing the credential and the staff member
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * The staff member created
+     */
     @PostMapping("/create")
     @CrossOrigin(origins = "*")
     public ResponseEntity<?> create(@Valid @RequestBody PayloadStaffCreate payloadStaffCreate, BindingResult bindingResult) {
@@ -198,7 +174,15 @@ public class StaffController {
         }
     }
 
-
+    /**
+     * Update a staff member
+     * @param payloadStaffUpdate
+     *    The payload containing the credential and the staff member
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * The staff member updated
+     */
     @PutMapping("/update")
     @CrossOrigin(origins = "*")
     public ResponseEntity<?> update(@Valid @RequestBody PayloadStaffUpdate payloadStaffUpdate, BindingResult bindingResult) {
@@ -238,6 +222,15 @@ public class StaffController {
         }
     }
 
+    /**
+     * Login a staff member
+     * @param credential
+     *    The credential of the staff member
+     * @param bindingResult
+     *   The result of the validation
+     * @return
+     * A message indicating if the login was successful or not
+     */
     @PostMapping("/login")
     @CrossOrigin(origins = "*")
     public ResponseEntity<?> login(@Valid @RequestBody Credential credential,
