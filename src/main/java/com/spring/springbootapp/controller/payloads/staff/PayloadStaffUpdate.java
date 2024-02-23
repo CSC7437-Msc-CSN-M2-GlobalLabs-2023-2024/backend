@@ -10,11 +10,18 @@ public class PayloadStaffUpdate {
     Credential credential;
     @Valid
     StaffEntity staff;
+
+    @Valid
+    private String staffEmail;
     public Credential getCredential() {
         return credential;
     }
 
     public StaffEntity getStaff() {
         return staff;
+    }
+
+    public String getStaffEmail() {
+        return staffEmail;
     }
 }

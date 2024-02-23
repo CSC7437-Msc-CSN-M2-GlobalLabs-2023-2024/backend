@@ -5,6 +5,7 @@ import com.spring.springbootapp.controller.payloads.process.PayloadProcessUpdate
 import com.spring.springbootapp.controller.payloads.stage.PayloadStageUpdate;
 import com.spring.springbootapp.model.Credential;
 import com.spring.springbootapp.model.ProcessEntity;
+import com.spring.springbootapp.model.StaffEntity;
 import com.spring.springbootapp.repository.ProcessRepo;
 import com.spring.springbootapp.repository.StaffRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,6 +137,17 @@ public class ProcessController {
                 return new ResponseEntity<>("Process not found", HttpStatus.NOT_FOUND);
             }
             processRepo.deleteById(id);
+            //let's remove the process from all staff members
+            if (processRepo.findById(id).isPresent()) {
+                ProcessEntity process = processRepo.findById(id).get();
+                for (String email : process.getStaffEmails()) {
+                    if (staffRepo.findByEmail(email).isPresent()) {
+                        StaffEntity staff = staffRepo.findByEmail(email).get();
+                        staff.removeProcess(process);
+                        staffRepo.save(staff);
+                    }
+                }
+            }
             return new ResponseEntity<>("Process deleted", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
@@ -153,6 +165,23 @@ public class ProcessController {
         }
         if (!credential.isValid()) {
             return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+        }
+        for (String email : process.getStaffEmails()) { //check if all staff members exist
+            if (!staffRepo.existsByEmail(email)) {
+                return new ResponseEntity<>("Staff not found", HttpStatus.NOT_FOUND);
+            }
+        }
+        for (Long stageId : process.getStageIds()) { //check if all stages exist
+            if (!processRepo.existsById(stageId)) {
+                return new ResponseEntity<>("Stage not found", HttpStatus.NOT_FOUND);
+            }
+        }
+        for (String email : process.getStaffEmails()) { //add process to staff members
+            if(staffRepo.findByEmail(email).isPresent()) {
+                StaffEntity newStaff = staffRepo.findByEmail(email).get();
+                newStaff.addProcess(process);
+                staffRepo.save(newStaff);
+            }
         }
         ProcessEntity savedProcess = processRepo.save(process);
         return new ResponseEntity<>(savedProcess, HttpStatus.CREATED);
@@ -176,6 +205,23 @@ public class ProcessController {
         }
         newProcess.setId(processId);
         ProcessEntity savedProcess = processRepo.save(newProcess);
+        if (processRepo.findById(processId).isPresent()) {
+            ProcessEntity oldProcess = processRepo.findById(processId).get();
+            for (String email : oldProcess.getStaffEmails()) { //remove process from staff members
+                if(staffRepo.findByEmail(email).isPresent()) {
+                    StaffEntity oldStaff = staffRepo.findByEmail(email).get();
+                    oldStaff.removeProcess(oldProcess);
+                    staffRepo.save(oldStaff);
+                }
+            }
+            for (String email : newProcess.getStaffEmails()) { //add process to staff members
+                if(staffRepo.findByEmail(email).isPresent()) {
+                    StaffEntity newStaff = staffRepo.findByEmail(email).get();
+                    newStaff.addProcess(newProcess);
+                    staffRepo.save(newStaff);
+                }
+            }
+        }
         return new ResponseEntity<>(savedProcess, HttpStatus.OK);
     }
 }

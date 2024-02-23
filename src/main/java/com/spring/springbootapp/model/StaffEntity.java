@@ -100,4 +100,12 @@ public class StaffEntity {
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
+
+    public void addProcess(ProcessEntity process) {
+        processIds.add(process.getId());
+    }
+
+    public void removeProcess(ProcessEntity process) {
+        processIds.remove(process.getId());
+    }
 }

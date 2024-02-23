@@ -3,8 +3,12 @@ package com.spring.springbootapp.controller;
 import com.spring.springbootapp.controller.payloads.staff.PayloadStaffCreate;
 import com.spring.springbootapp.controller.payloads.staff.PayloadStaffUpdate;
 import com.spring.springbootapp.model.Credential;
+import com.spring.springbootapp.model.ProcessEntity;
 import com.spring.springbootapp.model.StaffEntity;
+import com.spring.springbootapp.model.StageEntity;
+import com.spring.springbootapp.repository.ProcessRepo;
 import com.spring.springbootapp.repository.StaffRepo;
+import com.spring.springbootapp.repository.StageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +26,12 @@ import java.util.Optional;
 public class StaffController {
     @Autowired
     StaffRepo staffRepo;
+
+    @Autowired
+    ProcessRepo processRepo;
+
+    @Autowired
+    StageRepo stageRepo;
 
     /**
      * Get all staff members
@@ -143,6 +153,19 @@ public class StaffController {
                 return new ResponseEntity<>("Staff not found", HttpStatus.NOT_FOUND);
             }
             staffRepo.deleteById(email);
+            // Remove staff email in processes list
+            List<ProcessEntity> processes = processRepo.findAll();
+            for (ProcessEntity process : processes) {
+                process.getStaffEmails().remove(email);
+                processRepo.save(process);
+            }
+            // Remove all stages of the staff
+            List<StageEntity> stages = stageRepo.findAll();
+            for (StageEntity stage : stages) {
+                if (stage.getStaffEmail().equals(email)) {
+                    stageRepo.deleteById(stage.getId());
+                }
+            }
             return new ResponseEntity<>("Staff deleted successfully", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
@@ -163,6 +186,12 @@ public class StaffController {
         Optional<StaffEntity> staffOptional = staffRepo.findByEmail(credential.getEmail());
         if (credential.isValid() && staffOptional.isPresent() && staffOptional.get().isAdmin()) {
             StaffEntity savedStaff = staffRepo.save(staff);
+            // Update process list of the staff
+            List<ProcessEntity> processes = processRepo.findAll();
+            for (ProcessEntity process : processes) {
+                process.getStaffEmails().add(savedStaff.getEmail());
+                processRepo.save(process);
+            }
             return new ResponseEntity<>(savedStaff, HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
@@ -174,19 +203,35 @@ public class StaffController {
     @CrossOrigin(origins = "*")
     public ResponseEntity<?> update(@Valid @RequestBody PayloadStaffUpdate payloadStaffUpdate, BindingResult bindingResult) {
         Credential credential = payloadStaffUpdate.getCredential();
+        String staffEmail = payloadStaffUpdate.getStaffEmail();
         StaffEntity staff = payloadStaffUpdate.getStaff();
         credential.setStaffRepo(staffRepo);
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
         // Check if credential correspond to a staff member and if the staff member is an admin or the staff member itself
-        Optional<StaffEntity> staffOptional = staffRepo.findByEmail(credential.getEmail());
-        if (credential.isValid() && staffOptional.isPresent() && (staffOptional.get().isAdmin() || staffOptional.get().getEmail().equals(staff.getEmail()))) {
-            if (!staffRepo.existsById(staff.getEmail())) {
+        Optional<StaffEntity> staffOptional = staffRepo.findByEmail(staffEmail);
+        if (credential.isValid() && staffOptional.isPresent() && ((staffRepo.findByEmail(credential.getEmail()).isPresent() && staffRepo.findByEmail(credential.getEmail()).get().isAdmin()) || staffOptional.get().getEmail().equals(staff.getEmail()))) {
+            if (!staffRepo.existsById(staffEmail)) {
                 return new ResponseEntity<>("Staff not found", HttpStatus.NOT_FOUND);
             }
-            staffRepo.deleteById(staff.getEmail());
+            staffRepo.deleteById(staffEmail);
             StaffEntity savedStaff = staffRepo.save(staff);
+            // Update process list of the staff
+            List<ProcessEntity> processes = processRepo.findAll();
+            for (ProcessEntity process : processes) {
+                process.getStaffEmails().remove(staffEmail);
+                process.getStaffEmails().add(savedStaff.getEmail());
+                processRepo.save(process);
+            }
+            // Update all stages of the staff
+            List<StageEntity> stages = stageRepo.findAll();
+            for (StageEntity stage : stages) {
+                if (stage.getStaffEmail().equals(staffEmail)) {
+                    stage.setStaffEmail(savedStaff.getEmail());
+                    stageRepo.save(stage);
+                }
+            }
             return new ResponseEntity<>(savedStaff, HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
