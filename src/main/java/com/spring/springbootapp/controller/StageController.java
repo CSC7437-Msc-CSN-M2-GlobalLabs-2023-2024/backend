@@ -47,7 +47,8 @@ public class StageController {
             List<StageEntity> stages = stageRepo.findAll();
             return new ResponseEntity<>(stages, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -73,11 +74,13 @@ public class StageController {
         }
         if (credential.isValid()) { // Check if credential correspond to a staff member
             if (!stageRepo.existsById(id)) {
-                return new ResponseEntity<>("Stage not found", HttpStatus.NOT_FOUND);
+                String jsonBody = "{\"message\": \"Stage not found\"}";
+                return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
             }
             return new ResponseEntity<>(stageRepo.findById(id), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -103,12 +106,15 @@ public class StageController {
         }
         if (credential.isValid()) { // Check if credential correspond to a staff member
             if (!stageRepo.existsById(id)) {
-                return new ResponseEntity<>("Stage not found", HttpStatus.NOT_FOUND);
+                String jsonBody = "{\"message\": \"Stage not found\"}";
+                return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
             }
             stageRepo.deleteById(id);
-            return new ResponseEntity<>("Stage deleted successfully", HttpStatus.OK);
+            String jsonBody = "{\"message\": \"Stage deleted successfully\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -131,7 +137,8 @@ public class StageController {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
         if (!credential.isValid()) {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
         StageEntity savedStage = stageRepo.save(stage);
         return new ResponseEntity<>(savedStage, HttpStatus.CREATED);
@@ -156,10 +163,12 @@ public class StageController {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
         if (!credential.isValid()) {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
         if (!stageRepo.existsById(stage.getId())) {
-            return new ResponseEntity<>("Stage not found", HttpStatus.NOT_FOUND);
+            String jsonBody = "{\"message\": \"Stage not found\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
         }
         // Additional validation logic if needed
         StageEntity savedStage = stageRepo.save(stage);

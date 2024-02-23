@@ -1,0 +1,26 @@
+POST http://localhost:8080/api/staff/login
+Content-Type: application/json
+Content-Length: 59
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "admin@admin.com",
+  "passwordHash": "admin"
+}
+
+<> 2024-02-23T101515.200.txt
+
+###
+
+POST http://localhost:8080/api/staff/login
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-02-23T101431.400.json
+
+###
+

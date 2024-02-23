@@ -57,7 +57,8 @@ public class StaffController {
             }
             return new ResponseEntity<>(staff, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -83,14 +84,16 @@ public class StaffController {
         }
         if(credential.isValid()) { // Check if credential correspond to a staff member
             if (!staffRepo.existsById(email)) {
-                return new ResponseEntity<>("Staff not found", HttpStatus.NOT_FOUND);
+                String jsonBody = "{\"message\": \"Staff not found\"}";
+                return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
             }
             Optional<StaffEntity> staff = staffRepo.findByEmail(email);
             // Remove passwordHash from the response
             staff.ifPresent(staffEntity -> staffEntity.setPasswordHash(null));
             return new ResponseEntity<>(staff, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -118,7 +121,8 @@ public class StaffController {
         Optional<StaffEntity> staff = staffRepo.findByEmail(credential.getEmail());
         if (credential.isValid() && staff.isPresent() && staff.get().isAdmin()) {
             if (!staffRepo.existsById(email)) {
-                return new ResponseEntity<>("Staff not found", HttpStatus.NOT_FOUND);
+                String jsonBody = "{\"message\": \"Staff not found\"}";
+                return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
             }
             staffRepo.deleteById(email);
             // Remove staff email in processes list
@@ -134,9 +138,11 @@ public class StaffController {
                     stageRepo.deleteById(stage.getId());
                 }
             }
-            return new ResponseEntity<>("Staff deleted successfully", HttpStatus.OK);
+            String jsonBody = "{\"message\": \"Staff deleted successfully\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -170,7 +176,8 @@ public class StaffController {
             }
             return new ResponseEntity<>(savedStaff, HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -197,7 +204,8 @@ public class StaffController {
         Optional<StaffEntity> staffOptional = staffRepo.findByEmail(staffEmail);
         if (credential.isValid() && staffOptional.isPresent() && ((staffRepo.findByEmail(credential.getEmail()).isPresent() && staffRepo.findByEmail(credential.getEmail()).get().isAdmin()) || staffOptional.get().getEmail().equals(staff.getEmail()))) {
             if (!staffRepo.existsById(staffEmail)) {
-                return new ResponseEntity<>("Staff not found", HttpStatus.NOT_FOUND);
+                String jsonBody = "{\"message\": \"Staff not found\"}";
+                return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
             }
             staffRepo.deleteById(staffEmail);
             StaffEntity savedStaff = staffRepo.save(staff);
@@ -218,7 +226,8 @@ public class StaffController {
             }
             return new ResponseEntity<>(savedStaff, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -240,9 +249,11 @@ public class StaffController {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
         if (credential.isValid()) {
-            return new ResponseEntity<>("Login successful", HttpStatus.OK);
+            String jsonBody = "{\"message\": \"Login successful\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
     }
 

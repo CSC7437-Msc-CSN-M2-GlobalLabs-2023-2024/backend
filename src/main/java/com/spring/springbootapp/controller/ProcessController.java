@@ -49,7 +49,8 @@ public class ProcessController {
             List<ProcessEntity> processes = processRepo.findAll();
             return new ResponseEntity<>(processes, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -75,11 +76,13 @@ public class ProcessController {
         }
         if (credential.isValid()) { // Check if credential correspond to a staff member
             if (!processRepo.existsById(id)) {
-                return new ResponseEntity<>("Process not found", HttpStatus.NOT_FOUND);
+                String jsonBody = "{\"message\": \"Process not found\"}";
+                return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
             }
             return new ResponseEntity<>(processRepo.findById(id), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -105,7 +108,8 @@ public class ProcessController {
         }
         if (credential.isValid()) { // Check if credential correspond to a staff member
             if (!processRepo.existsById(id)) {
-                return new ResponseEntity<>("Process not found", HttpStatus.NOT_FOUND);
+                String jsonBody = "{\"message\": \"Process not found\"}";
+                return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
             }
             processRepo.deleteById(id);
             //let's remove the process from all staff members
@@ -119,9 +123,11 @@ public class ProcessController {
                     }
                 }
             }
-            return new ResponseEntity<>("Process deleted", HttpStatus.OK);
+            String jsonBody = "{\"message\": \"Process deleted\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -144,16 +150,19 @@ public class ProcessController {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
         if (!credential.isValid()) {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
         for (String email : process.getStaffEmails()) { //check if all staff members exist
             if (!staffRepo.existsByEmail(email)) {
-                return new ResponseEntity<>("Staff not found", HttpStatus.NOT_FOUND);
+                String jsonBody = "{\"message\": \"Staff not found\"}";
+                return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
             }
         }
         for (Long stageId : process.getStageIds()) { //check if all stages exist
             if (!processRepo.existsById(stageId)) {
-                return new ResponseEntity<>("Stage not found", HttpStatus.NOT_FOUND);
+                String jsonBody = "{\"message\": \"Stage not found\"}";
+                return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
             }
         }
         for (String email : process.getStaffEmails()) { //add process to staff members
@@ -187,10 +196,12 @@ public class ProcessController {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
         if (!credential.isValid()) {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
         if (!processRepo.existsById(processId)) {
-            return new ResponseEntity<>("Process not found", HttpStatus.NOT_FOUND);
+            String jsonBody = "{\"message\": \"Process not found\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
         }
         newProcess.setId(processId);
         ProcessEntity savedProcess = processRepo.save(newProcess);

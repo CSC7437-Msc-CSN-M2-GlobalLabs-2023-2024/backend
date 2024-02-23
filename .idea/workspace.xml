@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82b14de1-fa21-418d-8e83-b8b80bf5b6d3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/Service/StaffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/Service/InitService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/SpringbootApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/SpringbootApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/PatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/PatientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/ProcessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/ProcessController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StaffController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StaffController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/spring/springbootapp/PatientControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spring/springbootapp/PatientControllerTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/controller/StaffController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spring/springbootapp/controller/StaffController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +33,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -50,6 +60,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "HTTP Request.All in generated-requests.executor": "Run",
+    "HTTP Request.generated-requests | #1.executor": "Run",
     "JUnit.PatientControllerTests.executor": "Run",
     "JUnit.PatientControllerTests.test1GetAllPatients.executor": "Run",
     "JUnit.PatientControllerTests.test2GetAllPatients.executor": "Run",
@@ -100,6 +112,28 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.SpringbootApp">
+    <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="PatientControllerTests.test1GetAllPatients" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spring.springbootapp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spring.springbootapp" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.springbootapp.PatientControllerTests" />
+      <option name="METHOD_NAME" value="test1GetAllPatients" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PatientControllerTests.test2GetAllPatients" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
@@ -112,37 +146,6 @@
       <option name="MAIN_CLASS_NAME" value="com.spring.springbootapp.PatientControllerTests" />
       <option name="METHOD_NAME" value="test2GetAllPatients" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PatientControllerTests.testGetAllPatients" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.spring.springbootapp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.spring.springbootapp" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.springbootapp.PatientControllerTests" />
-      <option name="METHOD_NAME" value="testGetAllPatients" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProcessControllerTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.spring.springbootapp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.spring.springbootapp" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.springbootapp.ProcessControllerTests" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -170,9 +173,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.SpringbootApp" />
+        <item itemvalue="HTTP Request.generated-requests | #1" />
+        <item itemvalue="HTTP Request.All in generated-requests" />
         <item itemvalue="JUnit.PatientControllerTests.test2GetAllPatients" />
-        <item itemvalue="JUnit.PatientControllerTests.testGetAllPatients" />
-        <item itemvalue="JUnit.ProcessControllerTests" />
+        <item itemvalue="JUnit.PatientControllerTests.test1GetAllPatients" />
       </list>
     </recent_temporary>
   </component>
@@ -200,7 +204,9 @@
       <workItem from="1707903178126" duration="15671000" />
       <workItem from="1707936876243" duration="23910000" />
       <workItem from="1708514489368" duration="12314000" />
-      <workItem from="1708599706328" duration="40973000" />
+      <workItem from="1708599706328" duration="42539000" />
+      <workItem from="1708678560194" duration="332000" />
+      <workItem from="1708678932589" duration="3010000" />
     </task>
     <servers />
   </component>

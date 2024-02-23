@@ -49,13 +49,12 @@ public class PatientController {
         if(bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
-        System.out.println("email:"+credential.getEmail());
-        System.out.println("passwordHash:"+credential.getPasswordHash());
         if(credential.isValid()) { // Check if credential correspond to a staff member
             List<PatientEntity> patients = patientRepo.findAll();
             return new ResponseEntity<>(patients, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -79,10 +78,12 @@ public class PatientController {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
         if (!credential.isValid()) { // Check if credential correspond to a staff member
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
         if (!patientRepo.existsById(patientId)) { // Check if the patient exists
-            return new ResponseEntity<>("Patient not found", HttpStatus.NOT_FOUND);
+            String jsonBody = "{\"message\": \"Patient not found\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(patientRepo.findById(patientId), HttpStatus.OK);
     }
@@ -107,13 +108,16 @@ public class PatientController {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
         if (!credential.isValid()) {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
         if (!patientRepo.existsById(patientId)) {
-            return new ResponseEntity<>("Patient not found", HttpStatus.NOT_FOUND);
+            String jsonBody = "{\"message\": \"Patient not found\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
         }
         patientRepo.deleteById(patientId);
-        return new ResponseEntity<>("Patient deleted successfully", HttpStatus.OK);
+        String jsonBody = "{\"message\": \"Patient deleted successfully\"}";
+        return new ResponseEntity<>(jsonBody, HttpStatus.OK);
     }
 
     /**
@@ -135,10 +139,12 @@ public class PatientController {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
         if (!credential.isValid()) {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
         if (patientRepo.existsById(new PatientId(patient.getEmail(), patient.getFirstName(), patient.getLastName(), patient.getAge()))) {
-            return new ResponseEntity<>("Patient with provided details already exists.", HttpStatus.BAD_REQUEST);
+            String jsonBody = "{\"message\": \"Patient with provided details already exists.\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.BAD_REQUEST);
         }
         PatientEntity savedPatient = patientRepo.save(patient);
         return new ResponseEntity<>(savedPatient, HttpStatus.CREATED);
@@ -166,10 +172,12 @@ public class PatientController {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
         if (!credential.isValid()) {
-            return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
+            String jsonBody = "{\"message\": \"Invalid credentials\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
         if (!patientRepo.existsById(oldPatientId)) {
-            return new ResponseEntity<>("Patient not found", HttpStatus.NOT_FOUND);
+            String jsonBody = "{\"message\": \"Patient not found\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
         }
         patientRepo.deleteById(oldPatientId);
         PatientEntity savedPatient = patientRepo.save(newPatient);

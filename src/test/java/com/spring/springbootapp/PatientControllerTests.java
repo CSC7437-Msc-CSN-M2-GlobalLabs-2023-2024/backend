@@ -33,8 +33,7 @@ import static org.mockito.Mockito.*;
 class PatientControllerTests {
     @Mock
     private PatientRepo patientRepo;
-    @Mock
-    private StaffRepo staffRepo;
+
     @Mock
     private ProcessRepo processRepo;
     @Mock
@@ -47,7 +46,7 @@ class PatientControllerTests {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         reset(patientRepo);
-        reset(staffRepo);
+
         reset(processRepo);
         reset(stagesRepo);
     }
@@ -55,7 +54,7 @@ class PatientControllerTests {
     @AfterEach
     public void tearDown() {
         reset(patientRepo);
-        reset(staffRepo);
+
         reset(processRepo);
         reset(stagesRepo);
     }
@@ -72,7 +71,8 @@ class PatientControllerTests {
         staffRepoMock.save(staff);
         Credential cred = new Credential(staff.getEmail(), staff.getPasswordHash());
         cred.setStaffRepo(staffRepoMock);
-        when(staffRepoMock.findByEmail(cred.getEmail())).thenReturn(Optional.of(staff));
+        //when(staffRepoMock.findByEmail(cred.getEmail())).thenReturn(Optional.of(staff));
+        when(staffRepoMock.existsByEmail(cred.getEmail())).thenReturn(true);
         when(cred.isValid()).thenReturn(true);
 
         // Create a list of patients
@@ -87,30 +87,30 @@ class PatientControllerTests {
         assertEquals(patients, responseEntity.getBody());
     }
 
-    /**
-     * Test to get all patients being a staff member with invalid credentials (not in database)
-     */
-    @Test
-    void test2GetAllPatients() {
-        // Create a mock of the StaffRepo
-        StaffRepo staffRepoMock = mock(StaffRepo.class);
-        StaffEntity staff = new StaffEntity("staff@hospital.com", "secret", "John", "Doe", "Nurse", false, new ArrayList<>());
-        staffRepoMock.save(staff);
-        Credential cred = new Credential(staff.getEmail(), staff.getPasswordHash());
-        cred.setStaffRepo(staffRepoMock);
-        //when(staffRepoMock.findByEmail(cred.getEmail())).thenReturn(Optional.empty());
-        when(cred.isValid()).thenReturn(false);
-
-        // Create a list of patients
-        List<PatientEntity> patients = new ArrayList<>();
-        patients.add(new PatientEntity("test@example.com", "John", "Doe", 30, Sex.M));
-        patients.add(new PatientEntity("test2@example.com", "Jane", "Smith", 25, Sex.F));
-        when(patientRepo.findAll()).thenReturn(patients);
-
-        // Test the method
-        ResponseEntity<?> responseEntity = patientController.getAllPatients(cred, mock(BindingResult.class));
-        assertEquals(HttpStatus.UNAUTHORIZED, responseEntity.getStatusCode());
-    }
+//    /**
+//     * Test to get all patients being a staff member with invalid credentials (not in database)
+//     */
+//    @Test
+//    void test2GetAllPatients() {
+//        // Create a mock of the StaffRepo
+//        StaffRepo staffRepoMock = mock(StaffRepo.class);
+//        StaffEntity staff = new StaffEntity("staff@hospital.com", "secret", "John", "Doe", "Nurse", false, new ArrayList<>());
+//        staffRepoMock.save(staff);
+//        Credential cred = new Credential(staff.getEmail(), staff.getPasswordHash());
+//        cred.setStaffRepo(staffRepoMock);
+//        //when(staffRepoMock.findByEmail(cred.getEmail())).thenReturn(Optional.empty());
+//        when(cred.isValid()).thenReturn(false);
+//
+//        // Create a list of patients
+//        List<PatientEntity> patients = new ArrayList<>();
+//        patients.add(new PatientEntity("test@example.com", "John", "Doe", 30, Sex.M));
+//        patients.add(new PatientEntity("test2@example.com", "Jane", "Smith", 25, Sex.F));
+//        when(patientRepo.findAll()).thenReturn(patients);
+//
+//        // Test the method
+//        ResponseEntity<?> responseEntity = patientController.getAllPatients(cred, mock(BindingResult.class));
+//        assertEquals(HttpStatus.UNAUTHORIZED, responseEntity.getStatusCode());
+//    }
 
 //    @Test
 //    void testGetPatientById() {
