@@ -8,6 +8,7 @@ import com.spring.springbootapp.model.ProcessEntity;
 import com.spring.springbootapp.model.StaffEntity;
 import com.spring.springbootapp.repository.ProcessRepo;
 import com.spring.springbootapp.repository.StaffRepo;
+import com.spring.springbootapp.repository.StageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,9 @@ public class ProcessController {
 
     @Autowired
     StaffRepo staffRepo;
+
+    @Autowired
+    StageRepo stageRepo;
 
     /**
      * Get all processes
@@ -160,7 +164,7 @@ public class ProcessController {
             }
         }
         for (Long stageId : process.getStageIds()) { //check if all stages exist
-            if (!processRepo.existsById(stageId)) {
+            if (!stageRepo.existsById(stageId)) {
                 String jsonBody = "{\"message\": \"Stage not found\"}";
                 return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
             }

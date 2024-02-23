@@ -9,7 +9,7 @@
 - [Java 17](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html)
 - [Maven](https://maven.apache.org/download.cgi)
 
-## For development purposes
+## Launch for development purpose
 
 ### Launch the database
 
@@ -25,27 +25,13 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-## Full containerized environment
+## Launch for production purpose (docker-compose)
 
-### Create a custom network
-
-```bash
-docker network create custom-network
-```
-
-### Launch the database
-
-```bash
-docker run --name mydatabase --network custom-network -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_USER=myuser -e MYSQL_PASSWORD=secret
--e MYSQL_DATABASE=mydatabase -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -d -p 3306:3306 mysql:latest
-```
-
-### Build the application
 Ensure the user, password and database name are the same as the ones in the application.properties file.
 You must have `spring.datasource.url = jdbc:mysql://mydatabase:3306/mydatabase` in the application.properties file.
 
 ```bash
-docker build -t myspringbootapp .
+docker-
 ```
 
 ### Launch the application
