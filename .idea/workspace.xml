@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="82b14de1-fa21-418d-8e83-b8b80bf5b6d3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/controller/StageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/StageEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spring/springbootapp/model/StageEntity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +114,7 @@
       <recent name="com.spring.springbootapp.exception" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpringbootApp">
+  <component name="RunManager" selected="JUnit.StageControllerTests.testCreateStage">
     <configuration name="ProcessControllerTests.testCreateProcess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
@@ -134,38 +131,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProcessControllerTests.testDeleteProcess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.spring.springbootapp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.spring.springbootapp" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.springbootapp.ProcessControllerTests" />
-      <option name="METHOD_NAME" value="testDeleteProcess" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProcessControllerTests.testGetProcessById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.spring.springbootapp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.spring.springbootapp" />
-      <option name="MAIN_CLASS_NAME" value="com.spring.springbootapp.ProcessControllerTests" />
-      <option name="METHOD_NAME" value="testGetProcessById" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ProcessControllerTests.testUpdateProcess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
@@ -177,6 +142,37 @@
       <option name="PACKAGE_NAME" value="com.spring.springbootapp" />
       <option name="MAIN_CLASS_NAME" value="com.spring.springbootapp.ProcessControllerTests" />
       <option name="METHOD_NAME" value="testUpdateProcess" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StageControllerTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spring.springbootapp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spring.springbootapp" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.springbootapp.StageControllerTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StageControllerTests.testCreateStage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spring.springbootapp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spring.springbootapp" />
+      <option name="MAIN_CLASS_NAME" value="com.spring.springbootapp.StageControllerTests" />
+      <option name="METHOD_NAME" value="testCreateStage" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -204,11 +200,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.StageControllerTests.testCreateStage" />
+        <item itemvalue="JUnit.StageControllerTests" />
         <item itemvalue="Spring Boot.SpringbootApp" />
         <item itemvalue="JUnit.ProcessControllerTests.testUpdateProcess" />
         <item itemvalue="JUnit.ProcessControllerTests.testCreateProcess" />
-        <item itemvalue="JUnit.ProcessControllerTests.testDeleteProcess" />
-        <item itemvalue="JUnit.ProcessControllerTests.testGetProcessById" />
       </list>
     </recent_temporary>
   </component>
@@ -238,7 +234,7 @@
       <workItem from="1708514489368" duration="12314000" />
       <workItem from="1708599706328" duration="42539000" />
       <workItem from="1708678560194" duration="332000" />
-      <workItem from="1708678932589" duration="13641000" />
+      <workItem from="1708678932589" duration="15561000" />
     </task>
     <servers />
   </component>

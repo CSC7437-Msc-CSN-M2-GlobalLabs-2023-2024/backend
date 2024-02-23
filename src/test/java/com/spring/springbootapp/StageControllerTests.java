@@ -110,6 +110,7 @@ class StageControllerTests {
         when(cred.isValid()).thenReturn(true);
         StageEntity stage = new StageEntity("Stage 1", true, "test@example.com");
         when(stageRepo.save(stage)).thenReturn(stage);
+        when(processRepo.existsById(stage.getProcessId())).thenReturn(true);
         PayloadStageCreate payloadStageCreate = new PayloadStageCreate(cred, stage);
         ResponseEntity<?> responseEntity = stageController.createStage(payloadStageCreate, mock(BindingResult.class));
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
