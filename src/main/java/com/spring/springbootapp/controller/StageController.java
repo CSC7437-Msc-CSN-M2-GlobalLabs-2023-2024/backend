@@ -4,6 +4,7 @@ import com.spring.springbootapp.controller.payloads.stage.PayloadStageCreate;
 import com.spring.springbootapp.controller.payloads.stage.PayloadStageUpdate;
 import com.spring.springbootapp.model.Credential;
 import com.spring.springbootapp.model.StageEntity;
+import com.spring.springbootapp.repository.ProcessRepo;
 import com.spring.springbootapp.repository.StageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,9 @@ public class StageController {
 
     @Autowired
     StaffRepo staffRepo;
+
+    @Autowired
+    ProcessRepo processRepo;
 
     /**
      * Get all stages
@@ -139,6 +143,11 @@ public class StageController {
         if (!credential.isValid()) {
             String jsonBody = "{\"message\": \"Invalid credentials\"}";
             return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
+        }
+        // Check if the processID of the stage exists
+        if (!processRepo.existsById(stage.getProcessId())) {
+            String jsonBody = "{\"message\": \"Process not found\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
         }
         StageEntity savedStage = stageRepo.save(stage);
         return new ResponseEntity<>(savedStage, HttpStatus.CREATED);

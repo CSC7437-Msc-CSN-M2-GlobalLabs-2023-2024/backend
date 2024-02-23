@@ -74,7 +74,8 @@ Stage = {
 	**<span style="color:red">id</span>**:number,
 	name:string,
 	completed:boolean,
-	staffEmail:string
+	staffEmail:string,
+	processID:number
 }
 
 ## Some remarks

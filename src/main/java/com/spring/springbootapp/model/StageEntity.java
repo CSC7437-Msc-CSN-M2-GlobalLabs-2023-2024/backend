@@ -18,11 +18,21 @@ public class StageEntity {
     @Email
     private String staffEmail;
 
+    private Long processId;
+
     public StageEntity(String name, boolean completed, String staffEmail) {
     }
 
     public StageEntity() {
 
+    }
+
+    public Long getProcessId() {
+        return processId;
+    }
+
+    public void setProcessId(Long processId) {
+        this.processId = processId;
     }
 
     public Long getId() {
