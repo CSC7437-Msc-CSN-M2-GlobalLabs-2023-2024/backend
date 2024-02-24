@@ -9,6 +9,7 @@ import com.spring.springbootapp.model.Credential;
 import com.spring.springbootapp.model.ProcessEntity;
 import com.spring.springbootapp.repository.PatientRepo;
 import com.spring.springbootapp.repository.ProcessRepo;
+import com.spring.springbootapp.repository.StaffRepo;
 import com.spring.springbootapp.repository.StageRepo;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,6 +39,9 @@ class ProcessControllerTests {
     private ProcessRepo processRepo;
     @Mock
     StageRepo stagesRepo;
+
+    @Mock
+    StaffRepo staffRepo;
 
     @InjectMocks
     private ProcessController processController;
@@ -95,6 +99,8 @@ class ProcessControllerTests {
         ProcessEntity process = new ProcessEntity("Process 1", null, new ArrayList<>(), new ArrayList<>());
         Long ID = process.getId();
         when(processRepo.existsById(ID)).thenReturn(true);
+        // return empty optional
+        when(processRepo.findById(ID)).thenReturn(Optional.empty());
         ResponseEntity<?> responseEntity = processController.deleteProcess(cred, ID, mock(BindingResult.class));
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         verify(processRepo, times(1)).deleteById(ID);
@@ -107,6 +113,7 @@ class ProcessControllerTests {
         when(cred.isValid()).thenReturn(true);
         ProcessEntity process = new ProcessEntity("Process 1", null, new ArrayList<>(), new ArrayList<>());
         when(processRepo.save(process)).thenReturn(process);
+        when(patientRepo.existsById(process.getPatientId())).thenReturn(true);
         PayloadProcessCreate payloadProcessCreate = new PayloadProcessCreate(cred, process);
         ResponseEntity<?> responseEntity = processController.createProcess(payloadProcessCreate, mock(BindingResult.class));
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());

@@ -6,6 +6,7 @@ import com.spring.springbootapp.controller.payloads.stage.PayloadStageUpdate;
 import com.spring.springbootapp.model.Credential;
 import com.spring.springbootapp.model.ProcessEntity;
 import com.spring.springbootapp.model.StaffEntity;
+import com.spring.springbootapp.repository.PatientRepo;
 import com.spring.springbootapp.repository.ProcessRepo;
 import com.spring.springbootapp.repository.StaffRepo;
 import com.spring.springbootapp.repository.StageRepo;
@@ -17,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -31,6 +33,9 @@ public class ProcessController {
 
     @Autowired
     StageRepo stageRepo;
+
+    @Autowired
+    PatientRepo patientRepo;
 
     /**
      * Get all processes
@@ -94,45 +99,54 @@ public class ProcessController {
      * Delete process by id
      * @param credential
      *    The credential of the staff member
-     * @param id
+     * @param processId
      *    The id of the process
      * @param bindingResult
      *   The result of the validation
      * @return
      * A message indicating the success of the operation
      */
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{processId}")
     @CrossOrigin(origins = "*")
     public ResponseEntity<?> deleteProcess(@Valid @RequestBody Credential credential,
-                                           @PathVariable Long id,
+                                           @PathVariable Long processId,
                                            BindingResult bindingResult) {
         credential.setStaffRepo(staffRepo);
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
-        if (credential.isValid()) { // Check if credential correspond to a staff member
-            if (!processRepo.existsById(id)) {
-                String jsonBody = "{\"message\": \"Process not found\"}";
-                return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
-            }
-            processRepo.deleteById(id);
-            //let's remove the process from all staff members
-            if (processRepo.findById(id).isPresent()) {
-                ProcessEntity process = processRepo.findById(id).get();
-                for (String email : process.getStaffEmails()) {
-                    if (staffRepo.findByEmail(email).isPresent()) {
-                        StaffEntity staff = staffRepo.findByEmail(email).get();
-                        staff.removeProcess(process);
-                        staffRepo.save(staff);
-                    }
-                }
-            }
-            String jsonBody = "{\"message\": \"Process deleted\"}";
-            return new ResponseEntity<>(jsonBody, HttpStatus.OK);
-        } else {
+        // Check if credential correspond to a staff member
+        if (!credential.isValid()) {
             String jsonBody = "{\"message\": \"Invalid credentials\"}";
             return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
+        // Check if the process exists
+        if (!processRepo.existsById(processId)) {
+            String jsonBody = "{\"message\": \"Process not found\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
+        }
+        // Delete the process
+        processRepo.deleteById(processId);
+        //Remove the process from all staff members
+        if (processRepo.findById(processId).isPresent()) {
+            ProcessEntity process = processRepo.findById(processId).get();
+            for (String email : process.getStaffEmails()) {
+                if (staffRepo.findByEmail(email).isPresent()) {
+                    StaffEntity staff = staffRepo.findByEmail(email).get();
+                    staff.removeProcess(process);
+                    staffRepo.save(staff);
+                }
+            }
+        }
+        //Delete all stages associated with the process
+        if (processRepo.findById(processId).isPresent()) {
+            for (Long stageId : processRepo.findById(processId).get().getStageIds()) {
+                stageRepo.deleteById(stageId);
+            }
+        }
+        // Return a message indicating the success of the operation
+        String jsonBody = "{\"message\": \"Process deleted\"}";
+        return new ResponseEntity<>(jsonBody, HttpStatus.OK);
     }
 
     /**
@@ -157,18 +171,19 @@ public class ProcessController {
             String jsonBody = "{\"message\": \"Invalid credentials\"}";
             return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
-        for (String email : process.getStaffEmails()) { //check if all staff members exist
+        //check if patient exists
+        if (!patientRepo.existsById(process.getPatientId())) {
+            String jsonBody = "{\"message\": \"Patient not found\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
+        }
+        //check if all staff members exist
+        for (String email : process.getStaffEmails()) {
             if (!staffRepo.existsByEmail(email)) {
                 String jsonBody = "{\"message\": \"Staff not found\"}";
                 return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
             }
         }
-        for (Long stageId : process.getStageIds()) { //check if all stages exist
-            if (!stageRepo.existsById(stageId)) {
-                String jsonBody = "{\"message\": \"Stage not found\"}";
-                return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
-            }
-        }
+        process.setStageIds(Collections.emptyList());//initialize stage ids
         ProcessEntity savedProcess = processRepo.save(process);
         for (String email : process.getStaffEmails()) { //add process to staff members
             if(staffRepo.findByEmail(email).isPresent()) {

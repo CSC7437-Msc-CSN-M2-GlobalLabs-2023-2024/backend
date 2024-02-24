@@ -39,7 +39,8 @@ docker-
 ```bash
 docker run --name myapp --network custom-network -p 8080:8080 myspringbootapp
 ```
-
+## API documentation
+Api documentation is available online [here](https://csc7437-msc-csn-m2-globallabs-2023-2024.github.io/apidocs/)
 
 ## Database model
 
@@ -51,7 +52,7 @@ Staff = {
 	firstName:string,
 	lastName:string,
 	position:string,
-	processesIDs:number[]
+	processesIds:number[]
 }
 
 Patient = {
@@ -65,9 +66,9 @@ Patient = {
 Process = {
 	**<span style="color:red">id</span>**:number,
 	name:string,
-	patientEmail:string,
+	patientId:string,
 	staffEmails:string[],
-	stagesIDs:number[]
+	stagesIds:number[]
 }
 
 Stage = {
@@ -75,9 +76,33 @@ Stage = {
 	name:string,
 	completed:boolean,
 	staffEmail:string,
-	processID:number
+	processId:number
 }
 
 ## Some remarks
-- In this model if, for example, a children is sick and the parents too, they can use the same email.
-- For the staff we consider the mail as the primary key, which is good because we consider that in a same hospital there can be two people with the same name but not with the same mail.
+### Remarks about patient
+- As the patient primary key is (email, firstName, lastName, age), if for example a children is sick and the parents too, they can use the same email.
+- When delete a patient, all processes associated with the patient are deleted
+### Remarks about staff
+- For the staff we consider the mail as the primary key because we consider that in a same hospital there can be two people with the same name but not with the same mail.
+- Only a staff admin can create a staff
+- Only an admin or a staff himself can modify the staff profile
+- Only an admin can delete a staff
+- All staff can get staff profile by email or all staff profiles
+- All staff can CRUD (Create/Read/Update/Delete) all processes
+- All staff can CRUD all stages
+- All staff can CRUD all patient
+### Remarks about process
+- When create a process, the patient must exist (You cannot create a process if the patient does not exist)
+- When a process is deleted, all stages are deleted
+### Remarks about stage
+- When create a stage, the process must exist
+- When delete a stage, the stage id is removed from the process stagesIDs
+
+## Remains to do for the project
+- Improve the security of the application:
+  - Use JWT for authentication instead of basic authentication with username and password each time calling an endpoint
+  - Use HTTPS instead of HTTP
+- Add more tests
+  - Each have been tested at least once but not all the cases have been tested
+- Add logs with libraries like log4j

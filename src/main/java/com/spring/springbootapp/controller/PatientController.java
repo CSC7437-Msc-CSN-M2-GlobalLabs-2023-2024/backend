@@ -6,8 +6,12 @@ import com.spring.springbootapp.controller.payloads.patient.PayloadPatientGetByI
 import com.spring.springbootapp.controller.payloads.patient.PayloadPatientUpdate;
 import com.spring.springbootapp.model.Credential;
 import com.spring.springbootapp.model.PatientEntity;
+import com.spring.springbootapp.model.ProcessEntity;
+import com.spring.springbootapp.model.StaffEntity;
 import com.spring.springbootapp.model.primaryKey.PatientId;
+import com.spring.springbootapp.repository.ProcessRepo;
 import com.spring.springbootapp.repository.StaffRepo;
+import com.spring.springbootapp.repository.StageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +33,12 @@ public class PatientController {
 
     @Autowired
     StaffRepo staffRepo;
+
+    @Autowired
+    ProcessRepo processRepo;
+
+    @Autowired
+    StageRepo stageRepo;
 
     public PatientController(PatientRepo patientRepo) {
     }
@@ -107,13 +117,35 @@ public class PatientController {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
+        //Check if credential correspond to a staff member
         if (!credential.isValid()) {
             String jsonBody = "{\"message\": \"Invalid credentials\"}";
             return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
+        // Check if the patient exists
         if (!patientRepo.existsById(patientId)) {
             String jsonBody = "{\"message\": \"Patient not found\"}";
             return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
+        }
+        //When delete a patient, all processes associated with the patient are deleted
+        List<ProcessEntity> processes = processRepo.findAll();
+        for (ProcessEntity process : processes) {
+            // Remove all stages of the process
+            for (Long stageId : process.getStageIds()) {
+                stageRepo.deleteById(stageId);
+            }
+            //Remove the process from all staff members
+            for (String email : process.getStaffEmails()) {
+                if (staffRepo.findByEmail(email).isPresent()) {
+                    StaffEntity staff = staffRepo.findByEmail(email).get();
+                    staff.removeProcess(process);
+                    staffRepo.save(staff);
+                }
+            }
+            // Remove the process
+            if (process.getPatientId().equals(patientId)) {
+                processRepo.deleteById(process.getId());
+            }
         }
         patientRepo.deleteById(patientId);
         String jsonBody = "{\"message\": \"Patient deleted successfully\"}";

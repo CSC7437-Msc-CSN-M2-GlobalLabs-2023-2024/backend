@@ -3,6 +3,7 @@ package com.spring.springbootapp.controller;
 import com.spring.springbootapp.controller.payloads.stage.PayloadStageCreate;
 import com.spring.springbootapp.controller.payloads.stage.PayloadStageUpdate;
 import com.spring.springbootapp.model.Credential;
+import com.spring.springbootapp.model.ProcessEntity;
 import com.spring.springbootapp.model.StageEntity;
 import com.spring.springbootapp.repository.ProcessRepo;
 import com.spring.springbootapp.repository.StageRepo;
@@ -92,34 +93,44 @@ public class StageController {
      * Delete a stage by id
      * @param credential
      *    The credential of the staff member
-     * @param id
+     * @param stageId
      *    The id of the stage
      * @param bindingResult
      *   The result of the validation
      * @return
      * A message indicating the result of the operation
      */
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{stageId}")
     @CrossOrigin(origins = "*")
     public ResponseEntity<?> deleteStage(@Valid @RequestBody Credential credential,
-                                         @PathVariable Long id,
+                                         @PathVariable Long stageId,
                                          BindingResult bindingResult) {
         credential.setStaffRepo(staffRepo);
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
-        if (credential.isValid()) { // Check if credential correspond to a staff member
-            if (!stageRepo.existsById(id)) {
-                String jsonBody = "{\"message\": \"Stage not found\"}";
-                return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
-            }
-            stageRepo.deleteById(id);
-            String jsonBody = "{\"message\": \"Stage deleted successfully\"}";
-            return new ResponseEntity<>(jsonBody, HttpStatus.OK);
-        } else {
+        // Check if credential correspond to a staff member
+        if (!credential.isValid()) {
             String jsonBody = "{\"message\": \"Invalid credentials\"}";
             return new ResponseEntity<>(jsonBody, HttpStatus.UNAUTHORIZED);
         }
+        // Check if the stage exists
+        if (!stageRepo.existsById(stageId)) {
+            String jsonBody = "{\"message\": \"Stage not found\"}";
+            return new ResponseEntity<>(jsonBody, HttpStatus.NOT_FOUND);
+        }
+        // Delete the stage in process list
+        if (stageRepo.findById(stageId).isPresent() && processRepo.findById(stageRepo.findById(stageId).get().getProcessId()).isPresent()) {
+            ProcessEntity process = processRepo.findById(stageRepo.findById(stageId).get().getProcessId()).get();
+            List<Long> newProcessStages = process.getStageIds();
+            newProcessStages.remove(stageId);
+            process.setStageIds(newProcessStages);
+            processRepo.save(process);
+        }
+        // Delete the stage
+        stageRepo.deleteById(stageId);
+        String jsonBody = "{\"message\": \"Stage deleted successfully\"}";
+        return new ResponseEntity<>(jsonBody, HttpStatus.OK);
     }
 
     /**
